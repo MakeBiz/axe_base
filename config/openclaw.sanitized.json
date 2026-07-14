@@ -1,0 +1,1205 @@
+{
+  "gateway": {
+    "mode": "local",
+    "port": 18789,
+    "bind": "loopback",
+    "auth": {
+      "mode": "password",
+      "password": "***REDACTED***"
+    },
+    "tailscale": {
+      "mode": "funnel",
+      "resetOnExit": false
+    },
+    "controlUi": {
+      "allowInsecureAuth": true,
+      "allowedOrigins": [
+        "https://a411862843.tail78edf5.ts.net"
+      ]
+    },
+    "trustedProxies": [
+      "127.0.0.1"
+    ]
+  },
+  "plugins": {
+    "entries": {
+      "openai": {
+        "enabled": true
+      },
+      "codex": {
+        "enabled": true,
+        "config": {
+          "appServer": {
+            "turnCompletionIdleTimeoutMs": 600000,
+            "postToolRawAssistantCompletionIdleTimeoutMs": 600000,
+            "requestTimeoutMs": 600000
+          }
+        }
+      },
+      "duckduckgo": {
+        "enabled": true
+      },
+      "telegram": {
+        "enabled": true
+      },
+      "elevenlabs": {
+        "enabled": true
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "models": {
+        "openai/gpt-5.5": {}
+      },
+      "model": {
+        "primary": "openai/gpt-5.5"
+      },
+      "workspace": "/root/.openclaw/workspace",
+      "compaction": {
+        "reserveTokensFloor": "***REDACTED***"
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "groupChat": {
+          "mentionPatterns": [
+            "^\\s*[Аа]кс[\\s,:]",
+            "^\\s*[Пп]роджект[\\s,:]",
+            "^\\s*[Мм]ентор[\\s,:]"
+          ]
+        }
+      },
+      {
+        "id": "puls",
+        "name": "puls",
+        "workspace": "/root/.openclaw/workspace-pulse",
+        "agentDir": "/root/.openclaw/agents/puls/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Пульс"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "mcp__codex_apps__google_drive_get_spreadsheet_metadata",
+            "mcp__codex_apps__google_drive_get_spreadsheet_range",
+            "mcp__codex_apps__google_drive_get_spreadsheet_cells",
+            "mcp__codex_apps__google_drive_batch_update_spreadsheet",
+            "exec"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "mentor",
+        "name": "mentor",
+        "workspace": "/root/.openclaw/workspace-mentor",
+        "agentDir": "/root/.openclaw/agents/mentor/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Ментор"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "mcp__codex_apps__google_drive_get_spreadsheet_metadata",
+            "mcp__codex_apps__google_drive_get_spreadsheet_range",
+            "mcp__codex_apps__google_drive_get_spreadsheet_cells",
+            "mcp__codex_apps__google_drive_search_spreadsheet_rows",
+            "mcp__codex_apps__google_drive_batch_update_spreadsheet",
+            "mcp__codex_apps__google_drive_get_file_metadata",
+            "mcp__codex_apps__google_drive_list_folder",
+            "mcp__codex_apps__google_drive_search",
+            "mcp__codex_apps__google_drive_fetch",
+            "mcp__codex_apps__google_drive_export_file",
+            "message",
+            "telegram"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "psychologist",
+        "name": "psychologist",
+        "workspace": "/root/.openclaw/workspace-psychologist",
+        "agentDir": "/root/.openclaw/agents/psychologist/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Психолог"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "mcp__codex_apps__google_drive_get_spreadsheet_metadata",
+            "mcp__codex_apps__google_drive_get_spreadsheet_range",
+            "mcp__codex_apps__google_drive_get_spreadsheet_cells",
+            "message",
+            "telegram"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "teacher",
+        "name": "teacher",
+        "workspace": "/root/.openclaw/workspace-teacher",
+        "agentDir": "/root/.openclaw/agents/teacher/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Тичер"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "mcp__codex_apps__google_drive_get_spreadsheet_metadata",
+            "mcp__codex_apps__google_drive_get_spreadsheet_range",
+            "mcp__codex_apps__google_drive_get_spreadsheet_cells",
+            "mcp__codex_apps__google_drive_batch_update_spreadsheet"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "auditor",
+        "name": "auditor",
+        "workspace": "/root/.openclaw/workspace-auditor",
+        "agentDir": "/root/.openclaw/agents/auditor/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Аудитор"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "sessions_list",
+            "sessions_history",
+            "sessions_send",
+            "cron",
+            "exec"
+          ],
+          "deny": [
+            "web_search",
+            "web_fetch",
+            "browser",
+            "image",
+            "image_generate",
+            "video_generate"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "advisor",
+        "name": "advisor",
+        "workspace": "/root/.openclaw/workspace-advisor",
+        "agentDir": "/root/.openclaw/agents/advisor/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Советник"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "read",
+            "list_mcp_resources",
+            "read_mcp_resource",
+            "web_fetch",
+            "web_search"
+          ],
+          "deny": [
+            "exec",
+            "cron",
+            "sessions_send",
+            "gateway",
+            "agents",
+            "write",
+            "edit",
+            "apply_patch",
+            "image",
+            "image_generate",
+            "video_generate",
+            "browser"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "dispatcher",
+        "name": "dispatcher",
+        "workspace": "/root/.openclaw/workspace-dispatcher",
+        "agentDir": "/root/.openclaw/agents/dispatcher/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Диспетчер"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "bash",
+            "mcp__codex_apps__google_drive_get_spreadsheet_metadata",
+            "mcp__codex_apps__google_drive_get_spreadsheet_range",
+            "mcp__codex_apps__google_drive_get_spreadsheet_cells",
+            "mcp__codex_apps__google_drive_search_spreadsheet_rows",
+            "mcp__codex_apps__google_drive_batch_update_spreadsheet",
+            "mcp__codex_apps__google_drive_get_file_metadata",
+            "mcp__codex_apps__google_drive_list_folder",
+            "mcp__codex_apps__google_drive_search",
+            "mcp__codex_apps__google_drive_fetch",
+            "mcp__codex_apps__google_drive_export_file"
+          ],
+          "deny": [
+            "web_search",
+            "web_fetch",
+            "browser",
+            "image",
+            "image_generate",
+            "video_generate"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "lawyer",
+        "name": "lawyer",
+        "workspace": "/root/.openclaw/workspace-lawyer",
+        "agentDir": "/root/.openclaw/agents/lawyer/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Юрист"
+        },
+        "skills": [
+          "tg-dialogues"
+        ],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "mcp__codex_apps__google_drive_get_file_metadata",
+            "mcp__codex_apps__google_drive_list_folder",
+            "mcp__codex_apps__google_drive_search",
+            "mcp__codex_apps__google_drive_fetch",
+            "mcp__codex_apps__google_drive_export_file",
+            "mcp__codex_apps__google_drive_get_document",
+            "mcp__codex_apps__google_drive_get_document_text",
+            "mcp__codex_apps__google_drive_upload_file",
+            "mcp__codex_apps__google_drive_import_document",
+            "mcp__codex_apps__google_drive_create_file",
+            "mcp__codex_apps__google_drive_create_folder",
+            "mcp__codex_apps__google_drive_copy_file",
+            "mcp__codex_apps__google_drive_update_file",
+            "mcp__codex_apps__google_drive_get_spreadsheet_metadata",
+            "mcp__codex_apps__google_drive_get_spreadsheet_range",
+            "mcp__codex_apps__google_drive_get_spreadsheet_cells",
+            "mcp__codex_apps__google_drive_search_spreadsheet_rows",
+            "mcp__codex_apps__google_drive_batch_update_spreadsheet"
+          ],
+          "deny": [
+            "web_search",
+            "web_fetch",
+            "browser",
+            "image",
+            "image_generate",
+            "video_generate",
+            "mcp__codex_apps__google_drive_delete_file",
+            "mcp__codex_apps__google_drive_share_file"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "svyaznoy",
+        "name": "svyaznoy",
+        "workspace": "/root/.openclaw/workspace-svyaznoy",
+        "agentDir": "/root/.openclaw/agents/svyaznoy/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Связной"
+        },
+        "skills": [
+          "tg-dialogues"
+        ],
+        "tools": {
+          "profile": "coding",
+          "allow": [
+            "exec",
+            "bash",
+            "mcp__codex_apps__google_drive_get_spreadsheet_metadata",
+            "mcp__codex_apps__google_drive_get_spreadsheet_range",
+            "mcp__codex_apps__google_drive_get_spreadsheet_cells",
+            "mcp__codex_apps__google_drive_search_spreadsheet_rows",
+            "mcp__codex_apps__google_drive_batch_update_spreadsheet"
+          ],
+          "deny": [
+            "web_search",
+            "web_fetch",
+            "browser",
+            "image",
+            "image_generate",
+            "video_generate",
+            "message",
+            "telegram",
+            "mcp__codex_apps__gmail_send_email",
+            "mcp__codex_apps__gmail_send_draft",
+            "mcp__codex_apps__google_drive_delete_file",
+            "mcp__codex_apps__google_drive_share_file"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "radar",
+        "name": "radar",
+        "workspace": "/root/.openclaw/workspace-radar",
+        "agentDir": "/root/.openclaw/agents/radar/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Радар"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "web_search",
+            "web_fetch",
+            "mcp__codex_apps__google_drive_get_file_metadata",
+            "mcp__codex_apps__google_drive_fetch",
+            "mcp__codex_apps__google_drive_export_file",
+            "message",
+            "telegram"
+          ],
+          "deny": [
+            "sessions_send",
+            "mcp__codex_apps__gmail_send_email",
+            "mcp__codex_apps__gmail_send_draft",
+            "mcp__codex_apps__google_drive_delete_file",
+            "mcp__codex_apps__google_drive_share_file",
+            "mcp__codex_apps__google_drive_update_file",
+            "mcp__codex_apps__google_drive_upload_file"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "analyst",
+        "name": "analyst",
+        "workspace": "/root/.openclaw/workspace-analyst",
+        "agentDir": "/root/.openclaw/agents/analyst/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Аналитик"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "bash",
+            "mcp__codex_apps__google_drive_get_file_metadata",
+            "mcp__codex_apps__google_drive_fetch",
+            "mcp__codex_apps__google_drive_export_file"
+          ],
+          "deny": [
+            "web_search",
+            "web_fetch",
+            "browser",
+            "image",
+            "image_generate",
+            "video_generate",
+            "message",
+            "telegram",
+            "sessions_send",
+            "mcp__codex_apps__gmail_send_email",
+            "mcp__codex_apps__gmail_send_draft",
+            "mcp__codex_apps__google_drive_delete_file",
+            "mcp__codex_apps__google_drive_share_file",
+            "mcp__codex_apps__google_drive_update_file",
+            "mcp__codex_apps__google_drive_upload_file"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "finance",
+        "name": "finance",
+        "workspace": "/root/.openclaw/workspace-finance",
+        "agentDir": "/root/.openclaw/agents/finance/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Финансист"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "bash"
+          ],
+          "deny": [
+            "web_search",
+            "web_fetch",
+            "browser",
+            "image",
+            "image_generate",
+            "video_generate",
+            "mcp__codex_apps__gmail_send_email",
+            "mcp__codex_apps__gmail_send_draft",
+            "mcp__codex_apps__google_drive_delete_file",
+            "mcp__codex_apps__google_drive_share_file",
+            "mcp__codex_apps__google_drive_update_file",
+            "mcp__codex_apps__google_drive_upload_file"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "dashboard",
+        "name": "dashboard",
+        "workspace": "/root/.openclaw/workspace-dashboard",
+        "agentDir": "/root/.openclaw/agents/dashboard/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Дашборд"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "bash",
+            "mcp__codex_apps__google_drive_get_file_metadata",
+            "mcp__codex_apps__google_drive_list_folder",
+            "mcp__codex_apps__google_drive_search",
+            "mcp__codex_apps__google_drive_fetch",
+            "mcp__codex_apps__google_drive_export_file",
+            "mcp__codex_apps__google_drive_get_spreadsheet_metadata",
+            "mcp__codex_apps__google_drive_get_spreadsheet_range",
+            "mcp__codex_apps__google_drive_get_spreadsheet_cells",
+            "mcp__codex_apps__google_drive_search_spreadsheet_rows"
+          ],
+          "deny": [
+            "web_search",
+            "web_fetch",
+            "browser",
+            "image",
+            "image_generate",
+            "video_generate",
+            "message",
+            "telegram",
+            "sessions_send",
+            "mcp__codex_apps__gmail_send_email",
+            "mcp__codex_apps__gmail_send_draft",
+            "mcp__codex_apps__google_drive_delete_file",
+            "mcp__codex_apps__google_drive_share_file",
+            "mcp__codex_apps__google_drive_update_file",
+            "mcp__codex_apps__google_drive_upload_file",
+            "mcp__codex_apps__google_drive_batch_update_spreadsheet"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "controller",
+        "name": "controller",
+        "workspace": "/root/.openclaw/workspace-controller",
+        "agentDir": "/root/.openclaw/agents/controller/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Контролёр"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "sessions_list",
+            "sessions_history",
+            "sessions_send",
+            "exec"
+          ],
+          "deny": [
+            "web_search",
+            "web_fetch",
+            "browser",
+            "image",
+            "image_generate",
+            "video_generate",
+            "message",
+            "telegram",
+            "mcp__codex_apps__gmail_send_email",
+            "mcp__codex_apps__gmail_send_draft",
+            "mcp__codex_apps__google_drive_delete_file",
+            "mcp__codex_apps__google_drive_share_file",
+            "mcp__codex_apps__google_drive_update_file",
+            "mcp__codex_apps__google_drive_upload_file"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "biryuza",
+        "name": "biryuza",
+        "workspace": "/root/.openclaw/workspace-biryuza",
+        "agentDir": "/root/.openclaw/agents/biryuza/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Бирюза"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "bash",
+            "cron"
+          ],
+          "deny": [
+            "web_search",
+            "web_fetch",
+            "browser",
+            "image",
+            "image_generate",
+            "video_generate",
+            "mcp__codex_apps__gmail_send_email",
+            "mcp__codex_apps__gmail_send_draft"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "project",
+        "name": "project",
+        "workspace": "/root/.openclaw/workspace-project",
+        "agentDir": "/root/.openclaw/agents/project/agent",
+        "model": "openai/gpt-5.5",
+        "contextInjection": "always",
+        "skills": [],
+        "identity": {
+          "name": "Проджект"
+        },
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "message",
+            "sessions_send",
+            "web_fetch",
+            "exec",
+            "bash",
+            "mcp__codex_apps__google_drive_get_spreadsheet_metadata",
+            "mcp__codex_apps__google_drive_get_spreadsheet_range",
+            "mcp__codex_apps__google_drive_get_spreadsheet_cells",
+            "mcp__codex_apps__google_drive_search_spreadsheet_rows",
+            "mcp__codex_apps__google_drive_batch_update_spreadsheet",
+            "mcp__codex_apps__google_drive_get_file_metadata",
+            "mcp__codex_apps__google_drive_list_folder",
+            "mcp__codex_apps__google_drive_search",
+            "mcp__codex_apps__google_drive_fetch",
+            "mcp__codex_apps__google_drive_export_file"
+          ]
+        }
+      },
+      {
+        "id": "rupor",
+        "name": "rupor",
+        "workspace": "/root/.openclaw/workspace-rupor",
+        "agentDir": "/root/.openclaw/agents/rupor/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Рупор"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "web_search",
+            "web_fetch",
+            "message",
+            "telegram"
+          ],
+          "deny": [
+            "mcp__codex_apps__gmail_send_email",
+            "mcp__codex_apps__gmail_send_draft",
+            "mcp__codex_apps__google_drive_delete_file",
+            "mcp__codex_apps__google_drive_share_file",
+            "mcp__codex_apps__google_drive_update_file",
+            "mcp__codex_apps__google_drive_upload_file"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "partner",
+        "name": "partner",
+        "workspace": "/root/.openclaw/workspace-partner",
+        "agentDir": "/root/.openclaw/agents/partner/agent",
+        "model": "openai/gpt-5.5",
+        "tools": {
+          "allow": [
+            "exec",
+            "bash",
+            "message",
+            "sessions_send",
+            "web_fetch"
+          ]
+        }
+      },
+      {
+        "id": "qualifier",
+        "name": "qualifier",
+        "workspace": "/root/.openclaw/workspace-qualifier",
+        "agentDir": "/root/.openclaw/agents/qualifier/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Квалификатор"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "bash",
+            "message",
+            "sessions_send"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "leadgen",
+        "name": "leadgen",
+        "workspace": "/root/.openclaw/workspace-leadgen",
+        "agentDir": "/root/.openclaw/agents/leadgen/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Лидогенератор"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "bash",
+            "message",
+            "sessions_send"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "dossier",
+        "name": "dossier",
+        "workspace": "/root/.openclaw/workspace-dossier",
+        "agentDir": "/root/.openclaw/agents/dossier/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Досье"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "bash",
+            "message",
+            "sessions_send",
+            "web_fetch"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "offer",
+        "name": "offer",
+        "workspace": "/root/.openclaw/workspace-offer",
+        "agentDir": "/root/.openclaw/agents/offer/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "КП-агент"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "bash",
+            "message",
+            "sessions_send"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "closer",
+        "name": "closer",
+        "workspace": "/root/.openclaw/workspace-closer",
+        "agentDir": "/root/.openclaw/agents/closer/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Продажник"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "bash",
+            "message",
+            "sessions_send"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "pinger",
+        "name": "pinger",
+        "workspace": "/root/.openclaw/workspace-pinger",
+        "agentDir": "/root/.openclaw/agents/pinger/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Пингер"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "bash",
+            "message",
+            "sessions_send"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "account",
+        "name": "account",
+        "workspace": "/root/.openclaw/workspace-account",
+        "agentDir": "/root/.openclaw/agents/account/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Аккаунт-менеджер"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "bash",
+            "message",
+            "sessions_send"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
+        "id": "pipeline",
+        "name": "pipeline",
+        "workspace": "/root/.openclaw/workspace-pipeline",
+        "agentDir": "/root/.openclaw/agents/pipeline/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Сторож пайплайна"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "bash",
+            "message",
+            "sessions_send"
+          ]
+        },
+        "contextInjection": "always"
+      }
+    ]
+  },
+  "auth": {
+    "profiles": {
+      "openai:anton@makebiz.life": {
+        "provider": "openai",
+        "mode": "oauth",
+        "email": "anton@makebiz.life"
+      }
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-07-09T08:48:49.263Z",
+    "lastRunVersion": "2026.6.11",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "tools": {
+    "media": {
+      "audio": {
+        "enabled": true,
+        "models": [
+          {
+            "provider": "elevenlabs",
+            "model": "scribe_v2"
+          }
+        ]
+      }
+    },
+    "sessions": {
+      "visibility": "all"
+    },
+    "agentToAgent": {
+      "enabled": true,
+      "allow": [
+        "main",
+        "mentor",
+        "dispatcher",
+        "puls",
+        "psychologist",
+        "teacher",
+        "auditor",
+        "advisor",
+        "lawyer",
+        "svyaznoy",
+        "radar",
+        "analyst",
+        "finance",
+        "dashboard",
+        "controller",
+        "biryuza",
+        "project",
+        "qualifier",
+        "leadgen",
+        "dossier",
+        "offer",
+        "closer",
+        "pinger",
+        "account",
+        "pipeline"
+      ]
+    },
+    "web": {
+      "search": {
+        "provider": "duckduckgo",
+        "enabled": true,
+        "openaiCodex": {
+          "enabled": true,
+          "mode": "cached"
+        }
+      },
+      "fetch": {
+        "enabled": true
+      }
+    },
+    "profile": "coding"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.6.11",
+    "lastTouchedAt": "2026-07-11T17:53:22.065Z"
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "groups": {
+        "*": {
+          "requireMention": true
+        },
+        "-1004084426737": {
+          "requireMention": false,
+          "ingest": true,
+          "groupPolicy": "allowlist",
+          "allowFrom": [
+            "280369346"
+          ]
+        },
+        "-1003097588708": {
+          "requireMention": false,
+          "ingest": true,
+          "groupPolicy": "allowlist",
+          "allowFrom": [
+            "280369346",
+            "5052001144"
+          ]
+        },
+        "-1004407039401": {
+          "requireMention": true,
+          "ingest": true,
+          "groupPolicy": "allowlist",
+          "allowFrom": [
+            "280369346",
+            "240987019"
+          ]
+        },
+        "-1004404743128": {
+          "requireMention": false,
+          "ingest": true,
+          "groupPolicy": "allowlist",
+          "allowFrom": [
+            "280369346"
+          ]
+        },
+        "-1004356787207": {
+          "requireMention": true,
+          "ingest": true,
+          "groupPolicy": "allowlist",
+          "allowFrom": [
+            "280369346"
+          ]
+        }
+      },
+      "botToken": "***REDACTED***",
+      "accounts": {
+        "default": {
+          "allowFrom": [
+            "280369346",
+            "5052001144",
+            "1369928585",
+            "240987019"
+          ],
+          "groupPolicy": "allowlist",
+          "groupAllowFrom": [
+            "280369346",
+            "5052001144",
+            "1369928585",
+            "240987019"
+          ]
+        },
+        "partner": {
+          "botToken": "***REDACTED***",
+          "allowFrom": [
+            "280369346"
+          ],
+          "groupPolicy": "allowlist",
+          "groupAllowFrom": [
+            "280369346"
+          ]
+        }
+      },
+      "streaming": {
+        "mode": "off"
+      },
+      "defaultAccount": "default"
+    }
+  },
+  "session": {
+    "dmScope": "per-channel-peer",
+    "agentToAgent": {
+      "maxPingPongTurns": 0
+    }
+  },
+  "bindings": [
+    {
+      "type": "route",
+      "agentId": "main",
+      "match": {
+        "channel": "telegram",
+        "accountId": "default",
+        "peer": {
+          "kind": "direct",
+          "id": "280369346"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "svyaznoy",
+      "match": {
+        "channel": "telegram",
+        "accountId": "default",
+        "peer": {
+          "kind": "group",
+          "id": "-1004084426737"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "lawyer",
+      "match": {
+        "channel": "telegram",
+        "accountId": "default",
+        "peer": {
+          "kind": "group",
+          "id": "-1004404743128"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "project",
+      "match": {
+        "channel": "telegram",
+        "accountId": "default",
+        "peer": {
+          "kind": "group",
+          "id": "-1004330023926"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "project",
+      "match": {
+        "channel": "telegram",
+        "accountId": "default",
+        "peer": {
+          "kind": "group",
+          "id": "-1003959493848"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "main",
+      "match": {
+        "channel": "telegram",
+        "accountId": "default",
+        "peer": {
+          "kind": "group",
+          "id": "-1004407039401"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "rupor",
+      "match": {
+        "channel": "telegram",
+        "accountId": "default",
+        "peer": {
+          "kind": "group",
+          "id": "-1003097588708"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "partner",
+      "match": {
+        "channel": "telegram",
+        "accountId": "partner",
+        "peer": {
+          "kind": "group",
+          "id": "-1004356787207"
+        }
+      }
+    }
+  ],
+  "messages": {
+    "tts": {
+      "provider": "elevenlabs",
+      "providers": {
+        "elevenlabs": {
+          "apiKey": "***REDACTED***",
+          "speakerVoiceId": "zWSsRd3J6WyZFl12aGMB",
+          "modelId": "eleven_multilingual_v2"
+        }
+      }
+    }
+  },
+  "commands": {
+    "ownerAllowFrom": [
+      "telegram:983564480"
+    ]
+  },
+  "skills": {
+    "entries": {
+      "1password": {
+        "enabled": false
+      },
+      "blogwatcher": {
+        "enabled": false
+      },
+      "blucli": {
+        "enabled": false
+      },
+      "camsnap": {
+        "enabled": false
+      },
+      "coding-agent": {
+        "enabled": false
+      },
+      "eightctl": {
+        "enabled": false
+      },
+      "gemini": {
+        "enabled": false
+      },
+      "gh-issues": {
+        "enabled": false
+      },
+      "gifgrep": {
+        "enabled": false
+      },
+      "github": {
+        "enabled": false
+      },
+      "gog": {
+        "enabled": false
+      },
+      "goplaces": {
+        "enabled": false
+      },
+      "himalaya": {
+        "enabled": false
+      },
+      "mcporter": {
+        "enabled": false
+      },
+      "nano-pdf": {
+        "enabled": false
+      },
+      "obsidian": {
+        "enabled": false
+      },
+      "openai-whisper": {
+        "enabled": false
+      },
+      "openai-whisper-api": {
+        "enabled": false
+      },
+      "openhue": {
+        "enabled": false
+      },
+      "oracle": {
+        "enabled": false
+      },
+      "ordercli": {
+        "enabled": false
+      },
+      "sag": {
+        "enabled": false
+      },
+      "session-logs": {
+        "enabled": false
+      },
+      "sherpa-onnx-tts": {
+        "enabled": false
+      },
+      "songsee": {
+        "enabled": false
+      },
+      "sonoscli": {
+        "enabled": false
+      },
+      "spotify-player": {
+        "enabled": false
+      },
+      "summarize": {
+        "enabled": false
+      },
+      "trello": {
+        "enabled": false
+      },
+      "xurl": {
+        "enabled": false
+      }
+    }
+  }
+}

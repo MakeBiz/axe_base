@@ -1,0 +1,14 @@
+*/15 * * * * /usr/bin/python3 /root/transcriber/render_memory.py >> /root/transcriber/render.log 2>&1
+*/15 * * * * flock -n /tmp/distill.lock bash -lc 'set -a; . /root/.secrets/transcriber.env; set +a; exec /usr/bin/python3 /root/transcriber/distill.py' >> /root/transcriber/distill.log 2>&1
+# makebiz-feed (Asia/Dubai): Радар-новости 09:00, Рупор-контент 09:15, Аналитик недельный дайджест пятница 20:00
+10 5 * * * flock -n /tmp/radar-cron.lock /root/.openclaw/cron/radar_morning.sh >> /root/.openclaw/cron/radar.log 2>&1
+15 5 * * * flock -n /tmp/rupor-cron.lock /root/.openclaw/cron/rupor_morning.sh >> /root/.openclaw/cron/rupor.log 2>&1
+0 16 * * 5 flock -n /tmp/analyst-weekly.lock /root/.openclaw/cron/analyst_weekly.sh >> /root/.openclaw/cron/analyst_weekly.log 2>&1
+*/2 * * * * /root/.openclaw/workspace/bin/dozorny.sh >/dev/null 2>&1
+0 5,9,14 * * * flock -n /tmp/run_syncs_fast.lock /root/.openclaw/workspace/bin/run_syncs.sh fast >/dev/null 2>&1
+30 5 * * * flock -n /tmp/run_syncs_crm.lock /root/.openclaw/workspace/bin/run_syncs.sh crm >/dev/null 2>&1
+*/20 * * * * flock -n /tmp/summ_final.lock /root/.openclaw/workspace/bin/summaries_finalize.sh >/dev/null 2>&1
+*/15 * * * * flock -n /tmp/summ_capture.lock python3 /root/transcriber/summaries_capture.py >> /root/transcriber/summaries_capture.log 2>&1
+0 4 * * * flock -n /tmp/svyaznoy_fu.lock /root/.openclaw/workspace-svyaznoy/tools/svyaznoy_followup.sh >> /root/.openclaw/workspace-svyaznoy/followup.log 2>&1
+CRON_TZ=Asia/Dubai
+30 7 * * * /usr/bin/python3 /root/pulse/health_pull.py >> /root/pulse/cron.log 2>&1
