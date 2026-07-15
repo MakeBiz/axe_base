@@ -75,6 +75,16 @@ def parse_client(text):
     r = oai.chat.completions.create(model='gpt-4o-mini', temperature=0, response_format={'type':'json_object'},
         messages=[{'role':'system','content':sysp},{'role':'user','content':text[:12000]}])
     d = json.loads(r.choices[0].message.content)
+    legal_name = (d.get('client_legal_form_and_name') or '').strip()
+    if legal_name:
+        d.setdefault('client_company_name', legal_name)
+        d.setdefault('client_company_full_name', legal_name)
+        if not d.get('client_company_name'):
+            d['client_company_name'] = legal_name
+        if not d.get('client_company_full_name'):
+            d['client_company_full_name'] = legal_name
+    if legal_name.upper().startswith('ИП ') and d.get('client_registry_number') and d.get('client_registry_label') == 'ОГРН':
+        d['client_registry_label'] = 'ОГРНИП'
     d.setdefault('client_ogrnip', d.get('client_registry_number',''))
     d.setdefault('email', d.get('client_email',''))
     d.setdefault('phone', d.get('client_phone',''))
