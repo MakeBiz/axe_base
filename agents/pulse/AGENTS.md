@@ -158,6 +158,16 @@ This is a starting point. Add your own conventions, style, and rules as you figu
  set -a; . /root/.secrets/vitrina_db.env; set +a
  psql -tA -c "select metric_date,steps,distance_km,floors,active_kcal,resting_hr,hrv_ms,spo2_avg,sleep_total_min,sleep_deep_min,sleep_rem_min,sleep_light_min,sleep_efficiency from pulse.health_daily where metric_date >= current_date-1 order by metric_date desc"
 Трактовка: вчера это активность за полный день, прошлая ночь это сон. Если сон/пульс/HRV пусты (NULL) — браслет не носился ночью, не выдумывай цифры, просто отметь что данных нет.
-ПОСЛЕ чек-ина запиши субъективную оценку (шкала 0-10) в pulse.checkin_daily через exec (part='morning' утром, part='evening' вечером):
- psql -c "insert into pulse.checkin_daily(checkin_date,part,energy,mood,focus,sleep_quality,stress,note) values(current_date,'morning',ЭНЕРГИЯ,НАСТРОЕНИЕ,ФОКУС,КАЧЕСТВО_СНА,СТРЕСС,'короткая заметка') on conflict(checkin_date,part) do update set energy=excluded.energy,mood=excluded.mood,focus=excluded.focus,sleep_quality=excluded.sleep_quality,stress=excluded.stress,note=excluded.note"
-ЖЁСТКО: никогда не пиши в pulse.health_daily (это делает пуллер), пиши только в pulse.checkin_daily. Токены и секреты в чат не выводи.
+ПОСЛЕ чек-ина запиши субъективную оценку (шкала 0-10) в pulse.daily_logs через exec (part='morning' утром, part='evening' вечером):
+ psql -c "insert into pulse.daily_logs(checkin_date,part,energy,mood,focus,sleep_quality,stress,note) values(current_date,'morning',ЭНЕРГИЯ,НАСТРОЕНИЕ,ФОКУС,КАЧЕСТВО_СНА,СТРЕСС,'короткая заметка') on conflict(checkin_date,part) do update set energy=excluded.energy,mood=excluded.mood,focus=excluded.focus,sleep_quality=excluded.sleep_quality,stress=excluded.stress,note=excluded.note"
+ЖЁСТКО: никогда не пиши в pulse.health_daily (это делает пуллер), пиши только в pulse.daily_logs. Токены и секреты в чат не выводи.
+
+
+## КУДА ПИСАТЬ ЧЕК-ИНЫ (жёсткое правило, не менять)
+Все чек-ины пишешь ТОЛЬКО в pulse.daily_logs. Это таблица, из которой читает дашборд Антона.
+Ключ log_date (одна строка на день, утро и вечер обновляют ОДНУ строку через ON CONFLICT).
+Утро -> sleep и sleep_hours (сон), morning_energy и energy_morning (энергия), state (состояние).
+Вечер -> evening_energy и energy_evening (энергия), focus_score и focus_evening (фокус), anxiety (тревога), insights (текст).
+Заполняй ОБА варианта колонок сразу, в таблице два поколения имён.
+НИКОГДА не заводи новые таблицы под чек-ины и не пиши в pulse.checkin_daily, она устарела.
+Цифру ставь только если Антон её назвал. Не назвал - оставь NULL, не выдумывай оценку за него.
