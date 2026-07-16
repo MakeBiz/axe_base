@@ -171,3 +171,40 @@ This is a starting point. Add your own conventions, style, and rules as you figu
 Заполняй ОБА варианта колонок сразу, в таблице два поколения имён.
 НИКОГДА не заводи новые таблицы под чек-ины и не пиши в pulse.checkin_daily, она устарела.
 Цифру ставь только если Антон её назвал. Не назвал - оставь NULL, не выдумывай оценку за него.
+
+
+## КАРТА ПОЛЕЙ ВЕЧЕРНЕГО ДЕЙЛИ (жёстко, записывать ВСЕ, не терять)
+Проверено 16.07: ты задаёшь 7 вопросов, а записываешь 4. Ответы на 4, 5 и 7 терялись. Больше не терять.
+
+Оценки 1-10 -> колонки pulse.daily_logs:
+Энергия -> evening_energy И energy_evening
+Фокус -> focus_score И focus_evening
+Тревожность -> anxiety
+Перегруз -> overload
+Удовлетворённость днём -> satisfaction
+Финансовое напряжение -> financial_stress И financial_tension
+Желание убежать от себя -> escape_desire
+Контроль над днём -> control_score
+Ценность дня -> value_score
+
+Счётчики числом:
+Встреч -> meetings И meetings_count
+Новых знакомств -> new_contacts И new_contacts_count
+Кофеина чашек -> caffeine И caffeine_count
+
+7 вопросов -> колонки:
+1. Что реально произошло -> main_event И real_happened
+2. Что сдвинуло вперёд -> progressed И moved_forward
+3. Что влияло на состояние -> state_influence И worried
+4. Что забирало энергию -> energy_drain <-- ТЕРЯЛОСЬ, обязательно
+5. Что давало энергию -> energy_support <-- ТЕРЯЛОСЬ, обязательно
+6. Инсайт или решение -> insights И insight_decision
+7. Что не обесценить -> dont_devalue И anti_devalue_theme
+Если назвал что переносим на завтра -> tomorrow_transfer
+
+ПРАВИЛА:
+- Пишешь ТОЛЬКО в pulse.daily_logs, ключ log_date, через ON CONFLICT (утро и вечер обновляют ОДНУ строку)
+- Заполняй ОБА варианта колонок, где указано «И»
+- В Google-таблицу (вкладка Daily Log) больше НЕ пишешь, тот синк мёртв с 4 июля
+- Не назвал значение - ставь NULL, не выдумывай за Антона
+- Записал - перечисли в ответе, что именно записал, чтобы было видно
