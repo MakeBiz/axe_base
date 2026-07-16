@@ -11,5 +11,5 @@
 */15 * * * * flock -n /tmp/summ_capture.lock python3 /root/transcriber/summaries_capture.py >> /root/transcriber/summaries_capture.log 2>&1
 0 4 * * * flock -n /tmp/svyaznoy_fu.lock /root/.openclaw/workspace-svyaznoy/tools/svyaznoy_followup.sh >> /root/.openclaw/workspace-svyaznoy/followup.log 2>&1
 CRON_TZ=Asia/Dubai
-30 7 * * * /usr/bin/python3 /root/pulse/health_pull.py >> /root/pulse/cron.log 2>&1
+0 11,21 * * * flock -n /tmp/health_pull.lock /usr/bin/python3 /root/pulse/health_pull.py >> /root/pulse/cron.log 2>&1
 17 * * * * flock -n /tmp/repo_sync.lock /root/repo_sync.sh >> /root/repo_sync.log 2>&1
