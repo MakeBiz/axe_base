@@ -5,11 +5,11 @@
 15 5 * * * flock -n /tmp/rupor-cron.lock /root/.openclaw/cron/rupor_morning.sh >> /root/.openclaw/cron/rupor.log 2>&1
 0 16 * * 5 flock -n /tmp/analyst-weekly.lock /root/.openclaw/cron/analyst_weekly.sh >> /root/.openclaw/cron/analyst_weekly.log 2>&1
 */2 * * * * /root/.openclaw/workspace/bin/dozorny.sh >/dev/null 2>&1
-0 5,9,14 * * * flock -n /tmp/run_syncs_fast.lock /root/.openclaw/workspace/bin/run_syncs.sh fast >/dev/null 2>&1
-30 5 * * * flock -n /tmp/run_syncs_crm.lock /root/.openclaw/workspace/bin/run_syncs.sh crm >/dev/null 2>&1
 */20 * * * * flock -n /tmp/summ_final.lock /root/.openclaw/workspace/bin/summaries_finalize.sh >/dev/null 2>&1
 */15 * * * * flock -n /tmp/summ_capture.lock python3 /root/transcriber/summaries_capture.py >> /root/transcriber/summaries_capture.log 2>&1
 0 4 * * * flock -n /tmp/svyaznoy_fu.lock /root/.openclaw/workspace-svyaznoy/tools/svyaznoy_followup.sh >> /root/.openclaw/workspace-svyaznoy/followup.log 2>&1
 CRON_TZ=Asia/Dubai
 0 11,21 * * * flock -n /tmp/health_pull.lock /usr/bin/python3 /root/pulse/health_pull.py >> /root/pulse/cron.log 2>&1
 17 * * * * flock -n /tmp/repo_sync.lock /root/repo_sync.sh >> /root/repo_sync.log 2>&1
+# синк витрины: Дубай 09,12,15,16,17,18,21,23 = UTC ниже; crm-режим = deals+leads+tasks+finance
+0 5,8,11,12,13,14,17,19 * * * flock -n /tmp/run_syncs.lock /root/.openclaw/workspace/bin/run_syncs.sh crm >/dev/null 2>&1
