@@ -821,6 +821,22 @@
           ]
         },
         "contextInjection": "always"
+      },
+      {
+        "id": "qualifier_web",
+        "name": "qualifier_web",
+        "workspace": "/root/.openclaw/workspace-qualifier-web",
+        "agentDir": "/root/.openclaw/agents/qualifier_web/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Ассистент MakeBiz"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": []
+        },
+        "contextInjection": "always"
       }
     ]
   },
