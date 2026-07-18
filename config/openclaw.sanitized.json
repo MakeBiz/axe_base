@@ -967,6 +967,22 @@
           "allowFrom": [
             "280369346"
           ]
+        },
+        "-1004369460245": {
+          "requireMention": false,
+          "ingest": true,
+          "groupPolicy": "allowlist",
+          "allowFrom": [
+            "280369346"
+          ]
+        },
+        "-1004312442970": {
+          "requireMention": false,
+          "ingest": true,
+          "groupPolicy": "allowlist",
+          "allowFrom": [
+            "280369346"
+          ]
         }
       },
       "botToken": "***REDACTED***",
@@ -987,6 +1003,16 @@
           ]
         },
         "partner": {
+          "botToken": "***REDACTED***",
+          "allowFrom": [
+            "280369346"
+          ],
+          "groupPolicy": "allowlist",
+          "groupAllowFrom": [
+            "280369346"
+          ]
+        },
+        "sales": {
           "botToken": "***REDACTED***",
           "allowFrom": [
             "280369346"
@@ -1103,6 +1129,30 @@
         "peer": {
           "kind": "group",
           "id": "-1004356787207"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "qualifier_web",
+      "match": {
+        "channel": "telegram",
+        "accountId": "sales",
+        "peer": {
+          "kind": "group",
+          "id": "-1004369460245"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "main",
+      "match": {
+        "channel": "telegram",
+        "accountId": "default",
+        "peer": {
+          "kind": "group",
+          "id": "-1004312442970"
         }
       }
     }
