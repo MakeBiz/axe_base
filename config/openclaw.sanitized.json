@@ -837,6 +837,30 @@
           "allow": []
         },
         "contextInjection": "always"
+      },
+      {
+        "id": "yasna",
+        "name": "yasna",
+        "workspace": "/root/.openclaw/workspace-yasna",
+        "agentDir": "/root/.openclaw/agents/yasna/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Ясна"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "mcp__codex_apps__google_drive_get_file_metadata",
+            "mcp__codex_apps__google_drive_list_folder",
+            "mcp__codex_apps__google_drive_search",
+            "mcp__codex_apps__google_drive_fetch",
+            "mcp__codex_apps__google_drive_export_file",
+            "message",
+            "telegram"
+          ]
+        },
+        "contextInjection": "always"
       }
     ]
   },
@@ -983,6 +1007,15 @@
           "allowFrom": [
             "280369346"
           ]
+        },
+        "-1003989514984": {
+          "requireMention": true,
+          "ingest": true,
+          "groupPolicy": "allowlist",
+          "allowFrom": [
+            "280369346",
+            "240987019"
+          ]
         }
       },
       "botToken": "***REDACTED***",
@@ -1020,6 +1053,18 @@
           "groupPolicy": "allowlist",
           "groupAllowFrom": [
             "280369346"
+          ]
+        },
+        "yasna": {
+          "botToken": "***REDACTED***",
+          "allowFrom": [
+            "280369346",
+            "240987019"
+          ],
+          "groupPolicy": "allowlist",
+          "groupAllowFrom": [
+            "280369346",
+            "240987019"
           ]
         }
       },
@@ -1153,6 +1198,42 @@
         "peer": {
           "kind": "group",
           "id": "-1004312442970"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "yasna",
+      "match": {
+        "channel": "telegram",
+        "accountId": "yasna",
+        "peer": {
+          "kind": "group",
+          "id": "-1003989514984"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "yasna",
+      "match": {
+        "channel": "telegram",
+        "accountId": "yasna",
+        "peer": {
+          "kind": "direct",
+          "id": "280369346"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "yasna",
+      "match": {
+        "channel": "telegram",
+        "accountId": "yasna",
+        "peer": {
+          "kind": "direct",
+          "id": "240987019"
         }
       }
     }
