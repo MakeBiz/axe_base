@@ -15,3 +15,4 @@ CRON_TZ=Asia/Dubai
 0 5,8,11,12,13,14,17,19 * * * flock -n /tmp/run_syncs.lock /root/.openclaw/workspace/bin/run_syncs.sh crm >/dev/null 2>&1
 3 5,8,11,12,13,14,17,19 * * * flock -n /tmp/run_syncs_fast.lock /root/.openclaw/workspace/bin/run_syncs.sh fast >/dev/null 2>&1
 27 * * * * flock -n /tmp/sync_watchdog.lock /usr/bin/python3 /root/.openclaw/workspace/bin/sync_watchdog.py >/dev/null 2>&1
+35 7 * * * flock -n /tmp/crm_sweeper.lock python3 /root/.openclaw/workspace-dispatcher/tools/crm_sweeper.py >> /root/.openclaw/workspace/logs/crm_sweeper.log 2>&1
