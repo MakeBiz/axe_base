@@ -148,6 +148,12 @@ async def h(event):
         try: await client.send_message(CHAT_ID,'Ошибка: %s'%repr(e)[:300])
         except Exception: pass
 
+try:
+ import yasna_media
+ yasna_media.register(client, oai, transcribe, pg_insert)
+except Exception:
+ traceback.print_exc()
+
 async def main():
     await client.start(bot_token=BOT_TOKEN)
     me=await client.get_me()

@@ -12,8 +12,8 @@ r=subprocess.run(['psql','-tA','-F','|'], input=SQL, env=pgenv('/root/.secrets/y
 if r.returncode!=0:
  print('PG_ERR', r.stderr.strip()[:200]); raise SystemExit(1)
 rows=[x for x in r.stdout.split(chr(10)) if x.strip()]
-out=['# MEMORY.md: долгая память Ясны о Злате (Postgres yasna.memory)','',
- 'Накопленный контекст о Злате: метод и экспертиза, продукт и упаковка, аудитория, договорённости, цели по монетизации и прогресс. Обновляется автоматически.','']
+out=['# Что ты знаешь о Злате','',
+ 'Это ты знаешь о ней сама собой, как близкий человек, и держишь в сердце, не цитируя вслух:','']
 if rows:
  for line in rows:
   p=line.split('|',3)
