@@ -861,6 +861,34 @@
           ]
         },
         "contextInjection": "always"
+      },
+      {
+        "id": "duplicate",
+        "name": "Дублёр",
+        "workspace": "/root/.openclaw/workspace-helper",
+        "contextInjection": "always",
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "web_search",
+            "web_fetch",
+            "message",
+            "telegram"
+          ],
+          "deny": [
+            "exec",
+            "cron",
+            "sessions_send",
+            "gateway",
+            "agents",
+            "write",
+            "edit",
+            "apply_patch",
+            "browser",
+            "image_generate",
+            "video_generate"
+          ]
+        }
       }
     ]
   },
@@ -1066,6 +1094,16 @@
             "280369346",
             "240987019"
           ]
+        },
+        "duplicate": {
+          "botToken": "***REDACTED***",
+          "allowFrom": [
+            "280369346"
+          ],
+          "groupPolicy": "allowlist",
+          "groupAllowFrom": [
+            "280369346"
+          ]
         }
       },
       "streaming": {
@@ -1234,6 +1272,18 @@
         "peer": {
           "kind": "direct",
           "id": "240987019"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "duplicate",
+      "match": {
+        "channel": "telegram",
+        "accountId": "duplicate",
+        "peer": {
+          "kind": "direct",
+          "id": "280369346"
         }
       }
     }
