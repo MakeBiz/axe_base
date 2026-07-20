@@ -969,7 +969,7 @@
   },
   "meta": {
     "lastTouchedVersion": "2026.6.11",
-    "lastTouchedAt": "2026-07-11T17:53:22.065Z"
+    "lastTouchedAt": "2026-07-20T20:43:00.935Z"
   },
   "channels": {
     "telegram": {
@@ -983,7 +983,8 @@
           "ingest": true,
           "groupPolicy": "allowlist",
           "allowFrom": [
-            "280369346"
+            "280369346",
+            "815206771"
           ]
         },
         "-1003097588708": {
@@ -992,7 +993,8 @@
           "groupPolicy": "allowlist",
           "allowFrom": [
             "280369346",
-            "5052001144"
+            "5052001144",
+            "815206771"
           ]
         },
         "-1004407039401": {
@@ -1001,7 +1003,8 @@
           "groupPolicy": "allowlist",
           "allowFrom": [
             "280369346",
-            "240987019"
+            "240987019",
+            "815206771"
           ]
         },
         "-1004404743128": {
@@ -1009,7 +1012,8 @@
           "ingest": true,
           "groupPolicy": "allowlist",
           "allowFrom": [
-            "280369346"
+            "280369346",
+            "815206771"
           ]
         },
         "-1004356787207": {
@@ -1017,7 +1021,8 @@
           "ingest": true,
           "groupPolicy": "allowlist",
           "allowFrom": [
-            "280369346"
+            "280369346",
+            "815206771"
           ]
         },
         "-1004369460245": {
@@ -1025,7 +1030,8 @@
           "ingest": true,
           "groupPolicy": "allowlist",
           "allowFrom": [
-            "280369346"
+            "280369346",
+            "815206771"
           ]
         },
         "-1004312442970": {
@@ -1033,7 +1039,8 @@
           "ingest": true,
           "groupPolicy": "allowlist",
           "allowFrom": [
-            "280369346"
+            "280369346",
+            "815206771"
           ]
         },
         "-1003989514984": {
@@ -1042,7 +1049,8 @@
           "groupPolicy": "allowlist",
           "allowFrom": [
             "280369346",
-            "240987019"
+            "240987019",
+            "815206771"
           ]
         }
       },
@@ -1053,56 +1061,66 @@
             "280369346",
             "5052001144",
             "1369928585",
-            "240987019"
+            "240987019",
+            "815206771"
           ],
           "groupPolicy": "allowlist",
           "groupAllowFrom": [
             "280369346",
             "5052001144",
             "1369928585",
-            "240987019"
+            "240987019",
+            "815206771"
           ]
         },
         "partner": {
           "botToken": "***REDACTED***",
           "allowFrom": [
-            "280369346"
+            "280369346",
+            "815206771"
           ],
           "groupPolicy": "allowlist",
           "groupAllowFrom": [
-            "280369346"
+            "280369346",
+            "815206771"
           ]
         },
         "sales": {
           "botToken": "***REDACTED***",
           "allowFrom": [
-            "280369346"
+            "280369346",
+            "815206771"
           ],
           "groupPolicy": "allowlist",
           "groupAllowFrom": [
-            "280369346"
+            "280369346",
+            "815206771"
           ]
         },
         "yasna": {
           "botToken": "***REDACTED***",
           "allowFrom": [
             "280369346",
-            "240987019"
+            "240987019",
+            "815206771"
           ],
           "groupPolicy": "allowlist",
           "groupAllowFrom": [
             "280369346",
-            "240987019"
+            "240987019",
+            "815206771"
           ]
         },
         "duplicate": {
           "botToken": "***REDACTED***",
           "allowFrom": [
-            "280369346"
+            "280369346",
+            "815206771"
           ],
           "groupPolicy": "allowlist",
           "groupAllowFrom": [
-            "280369346"
+            "280369346",
+            "815206771"
           ]
         }
       },
@@ -1286,6 +1304,18 @@
           "id": "280369346"
         }
       }
+    },
+    {
+      "type": "route",
+      "agentId": "main",
+      "match": {
+        "channel": "telegram",
+        "accountId": "default",
+        "peer": {
+          "kind": "direct",
+          "id": "815206771"
+        }
+      }
     }
   ],
   "messages": {
@@ -1302,7 +1332,8 @@
   },
   "commands": {
     "ownerAllowFrom": [
-      "telegram:983564480"
+      "telegram:983564480",
+      "telegram:815206771"
     ]
   },
   "skills": {
