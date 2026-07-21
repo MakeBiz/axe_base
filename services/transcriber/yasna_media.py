@@ -4,6 +4,11 @@ YASNA_GROUP=-1003989514984
 YASNA_ENV='/root/.secrets/yasna_mem.env'
 YASNA_FILES='/root/transcriber/yasna_files'
 os.makedirs(YASNA_FILES, exist_ok=True)
+def _sender_name(m):
+    sid=getattr(m,'sender_id',0) or 0
+    if sid==240987019: return 'Злата'
+    if sid==280369346: return 'Антон'
+    return ''
 def _pdf_text(path):
     try:
         r=subprocess.run(['pdftotext','-layout',path,'-'],capture_output=True,text=True,timeout=180)
@@ -11,7 +16,7 @@ def _pdf_text(path):
     except Exception: pass
     try:
         import pypdf
-        return chr(10).join((pg.extract_text() or '') for pg in pypdf.PdfReader(path).pages)
+        return chr(10).join((p.extract_text() or '') for p in pypdf.PdfReader(path).pages)
     except Exception: return ''
 def register(client, oai, transcribe, pg_insert):
     def _distill(text):
@@ -23,11 +28,19 @@ def register(client, oai, transcribe, pg_insert):
     @client.on(events.NewMessage())
     async def yasna_media(ev):
         if getattr(ev,'chat_id',None)!=YASNA_GROUP: return
-        m=ev.message; has_doc=bool(getattr(m,'document',None))
-        print('YASNA_MEDIA chat='+str(ev.chat_id)+' voice='+str(bool(m.voice))+' doc='+str(has_doc),flush=True)
+        m=ev.message
+        has_doc=bool(getattr(m,'document',None)); is_voice=bool(m.voice or getattr(m,'audio',None))
+        txt=(m.message or '').strip()
+        if txt and not is_voice and not has_doc:
+            try:
+                pg_insert(YASNA_ENV,'yasna.transcripts',('msg_id','sender','media_type','file_name','transcript'),(str(m.id),_sender_name(m),'text','',txt))
+                print('YASNA_MEDIA text stored id=%s'%m.id,flush=True)
+            except Exception: traceback.print_exc()
+            return
+        print('YASNA_MEDIA chat=%s voice=%s doc=%s'%(ev.chat_id,is_voice,has_doc),flush=True)
         try:
             mtype=None; fname=None
-            if m.voice or getattr(m,'audio',None): mtype='voice'
+            if is_voice: mtype='voice'
             elif has_doc:
                 mime=(m.document.mime_type or '')
                 for a in (m.document.attributes or []):
@@ -43,11 +56,8 @@ def register(client, oai, transcribe, pg_insert):
             loop=asyncio.get_event_loop(); text=''
             if mtype=='voice': text=await loop.run_in_executor(None, transcribe, path)
             elif mtype=='pdf': text=await loop.run_in_executor(None, _pdf_text, path)
-            text=(text or '').strip(); sender=''
-            try:
-                s=await m.get_sender(); sender=((getattr(s,'first_name','') or '')+' '+(getattr(s,'last_name','') or '')).strip()
-            except Exception: pass
-            pg_insert(YASNA_ENV,'yasna.transcripts',('msg_id','sender','media_type','file_name','transcript'),(str(m.id),sender,mtype,fname or os.path.basename(path),text))
+            text=(text or '').strip()
+            pg_insert(YASNA_ENV,'yasna.transcripts',('msg_id','sender','media_type','file_name','transcript'),(str(m.id),_sender_name(m),mtype,fname or os.path.basename(path),text))
             print('YASNA_MEDIA stored len='+str(len(text)),flush=True)
             if text:
                 summ=await loop.run_in_executor(None, _distill, text)
@@ -55,5 +65,5 @@ def register(client, oai, transcribe, pg_insert):
                     if line: pg_insert(YASNA_ENV,'yasna.memory',('kind','topic','content','source'),('медиа',mtype,line,'transcript'))
         except Exception:
             traceback.print_exc()
-    print('YASNA_MEDIA registered catch-all for '+str(YASNA_GROUP),flush=True)
+    print('YASNA_MEDIA registered (text+media) for '+str(YASNA_GROUP),flush=True)
     return True

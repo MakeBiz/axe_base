@@ -2,8 +2,8 @@ import os, subprocess, asyncio
 from telethon import TelegramClient
 from telethon.sessions import StringSession
 GROUP=-1003989514984
-VOICE_IDS=[7,12,24,26,27,28,29,30]
-PDF_IDS=[19,20,32,35,36,37]
+VOICE_IDS=[]
+PDF_IDS=[35,36,37]
 TEXT_IDS=[34]
 YENV='/root/.secrets/yasna_mem.env'
 FILES='/root/transcriber/yasna_files'
