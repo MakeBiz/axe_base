@@ -4,11 +4,11 @@
     "port": 18789,
     "bind": "loopback",
     "auth": {
-      "mode": "token",
-      "token": "***REDACTED***"
+      "mode": "password",
+      "password": "***REDACTED***"
     },
     "tailscale": {
-      "mode": "funnel",
+      "mode": "serve",
       "resetOnExit": false
     },
     "controlUi": {
@@ -969,7 +969,7 @@
   },
   "meta": {
     "lastTouchedVersion": "2026.6.11",
-    "lastTouchedAt": "2026-07-23T08:31:42.193Z"
+    "lastTouchedAt": "2026-07-23T13:10:39.219Z"
   },
   "channels": {
     "telegram": {
