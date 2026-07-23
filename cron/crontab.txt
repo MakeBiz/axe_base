@@ -19,5 +19,6 @@ CRON_TZ=Asia/Dubai
 10,25,40,55 * * * * nice -n 15 ionice -c 2 -n 7 /usr/bin/python3 /root/transcriber/yasna_render.py >> /root/transcriber/render.log 2>&1
 13 */3 * * * nice -n 15 ionice -c 2 -n 7 /usr/bin/flock -n /tmp/ops_write.lock /root/ops/ops_write.sh >> /root/ops/ops_write.log 2>&1
 0 18 * * * nice -n 15 ionice -c 2 -n 7 /usr/local/bin/openclaw_backup.sh >> /var/log/openclaw_backup.log 2>&1
-20 */3 * * * nice -n 15 ionice -c 2 -n 7 /root/.openclaw/workspace-radar/tools/radar_sources_sync.sh >> /root/.openclaw/workspace-radar/sources_sync.log 2>&1
 30 6 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/radar_discover.lock /root/.openclaw/workspace-radar/tools/radar_discover.sh >> /root/.openclaw/workspace-radar/discover.log 2>&1
+0 7 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/radar_collect_sources.lock /usr/bin/python3 /root/.openclaw/workspace-radar/tools/radar_collect_sources.py 500 >> /root/.openclaw/workspace-radar/collect_sources.log 2>&1
+20 7 * * * nice -n 15 ionice -c 2 -n 7 /root/.openclaw/workspace-radar/tools/radar_sources_sync.sh >> /root/.openclaw/workspace-radar/sources_sync.log 2>&1
