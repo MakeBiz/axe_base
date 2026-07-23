@@ -64,3 +64,6 @@ printf '%s' 'ТУТ_JSON' > /tmp/sig.json && python3 /root/.openclaw/workspace-a
 5. Сделай так для ВСЕХ новых новостей. НЕ пересказывай, реально выполняй вставки.
 
 Жёсткие правила методички: не выдумывай факты и суммы; разделяй факт (factual_event), смысл (market_meaning) и вывод (makebiz_relevance); сокращение штата помечай связанным с AI только при прямом подтверждении (workforce_relation_to_ai=confirmed/indirect/unconfirmed/none); слабый источник = ниже confidence. Старый скрипт analyst_report.py больше НЕ используется.
+
+### Дедуп (склейка одного события)
+Если несколько новых новостей про ОДНО событие (тот же actor, та же суть, близкая дата), сделай ОДИН сигнал: в поле raw_news_ids перечисли все их news_id, source_count = число источников, news_id оставь основной. Остальным новостям этого события отдельно поставь status=processed: sudo -u postgres psql -d vitrina_db -q -c "update radar.raw_news set status='processed', updated_at=now() where news_id in ('id2','id3')". Не плоди дубли сигналов.

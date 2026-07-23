@@ -22,3 +22,5 @@ CRON_TZ=Asia/Dubai
 20 7 * * * nice -n 15 ionice -c 2 -n 7 /root/.openclaw/workspace-radar/tools/radar_sources_sync.sh >> /root/.openclaw/workspace-radar/sources_sync.log 2>&1
 40 7 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/radar-cron.lock /root/.openclaw/cron/radar_morning.sh >> /root/.openclaw/cron/radar.log 2>&1
 0 8 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/analyst_daily.lock /root/.openclaw/workspace-analyst/tools/analyst_daily.sh >> /root/.openclaw/workspace-analyst/daily.log 2>&1
+30 8 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/analyst_report.lock /root/.openclaw/workspace-analyst/tools/analyst_report_daily.sh >> /root/.openclaw/workspace-analyst/report.log 2>&1
+0 9 1 * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/radar_revision.lock /root/.openclaw/workspace-radar/tools/radar_revision.sh >> /root/.openclaw/workspace-radar/revision.log 2>&1
