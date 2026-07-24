@@ -8,7 +8,7 @@
       "password": "***REDACTED***"
     },
     "tailscale": {
-      "mode": "serve",
+      "mode": "funnel",
       "resetOnExit": false
     },
     "controlUi": {
@@ -969,7 +969,7 @@
   },
   "meta": {
     "lastTouchedVersion": "2026.6.11",
-    "lastTouchedAt": "2026-07-23T13:10:39.219Z"
+    "lastTouchedAt": "2026-07-24T12:10:24.097Z"
   },
   "channels": {
     "telegram": {
