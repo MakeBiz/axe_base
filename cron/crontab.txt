@@ -26,3 +26,5 @@ CRON_TZ=Asia/Dubai
 0 9 1 * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/radar_revision.lock /root/.openclaw/workspace-radar/tools/radar_revision.sh >> /root/.openclaw/workspace-radar/revision.log 2>&1
 0 16 * * * nice -n 15 ionice -c 2 -n 7 /root/.openclaw/workspace-svyaznoy/tools/svyaznoy_watchdog.sh >> /root/.openclaw/workspace-svyaznoy/watchdog.log 2>&1
 15 9,14,20 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/selfheal.lock /usr/bin/python3 /root/.openclaw/cron/cron_selfheal.py >> /root/.openclaw/cron/selfheal.log 2>&1
+10 5,4 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/audit_precache.lock /root/.openclaw/workspace-auditor/tools/audit_precache.sh >> /root/.openclaw/workspace-auditor/precache.log 2>&1
+*/20 * * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/cron_snap.lock /root/.openclaw/cron/cron_snapshot.sh >> /root/.openclaw/cron/snapshot.log 2>&1
