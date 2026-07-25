@@ -2,11 +2,11 @@
 
 _Learn about the person you're helping. Update this as you go._
 
-- **Name:**
-- **What to call them:**
+- **Name:** Anton Chernobaev
+- **What to call them:** Anton
 - **Pronouns:** _(optional)_
-- **Timezone:**
-- **Notes:**
+- **Timezone:** Europe/Moscow
+- **Notes:** Prefers Russian in Telegram. When he sends voice messages, answer directly with the substance, without sending interim "listening to the message" acknowledgements.
 
 ## Context
 
