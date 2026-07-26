@@ -31,3 +31,5 @@ CRON_TZ=Asia/Dubai
 30 3 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/maintenance.lock /root/.openclaw/cron/maintenance.sh 60 >> /root/.openclaw/cron/maintenance.log 2>&1
 0 5 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/sess_hyg.lock /root/.openclaw/cron/session_hygiene.sh daily >> /root/.openclaw/cron/session_hygiene.log 2>&1
 0 11,15,19,23 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/sess_hyg.lock /root/.openclaw/cron/session_hygiene.sh check 400 >> /root/.openclaw/cron/session_hygiene.log 2>&1
+0 6 * * 1-5 nice -n 15 ionice -c 2 -n 7 flock -n /tmp/scout_t.lock /root/market/tools/scout_tenders.sh >> /root/market/tenders.log 2>&1
+30 9 * * 1 nice -n 15 ionice -c 2 -n 7 flock -n /tmp/scout_c.lock /root/market/tools/scout_competitors.sh >> /root/market/competitors.log 2>&1

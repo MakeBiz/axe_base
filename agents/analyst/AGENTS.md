@@ -67,3 +67,32 @@ printf '%s' 'ТУТ_JSON' > /tmp/sig.json && python3 /root/.openclaw/workspace-a
 
 ### Дедуп (склейка одного события)
 Если несколько новых новостей про ОДНО событие (тот же actor, та же суть, близкая дата), сделай ОДИН сигнал: в поле raw_news_ids перечисли все их news_id, source_count = число источников, news_id оставь основной. Остальным новостям этого события отдельно поставь status=processed: sudo -u postgres psql -d vitrina_db -q -c "update radar.raw_news set status='processed', updated_at=now() where news_id in ('id2','id3')". Не плоди дубли сигналов.
+
+## ЖЁСТКОЕ ПРАВИЛО: отрасль и справочники (строго из списка)
+
+Поле industry_primary это ОТРАСЛЬ КЛИЕНТА, где применяется AI, а НЕ сектор самого AI. Писать «ai_technology», «general_ai», «ai_software» ЗАПРЕЩЕНО, из-за этого разрез по отраслям на дашборде мёртвый.
+
+Выбирай РОВНО ОДНО значение из списка (нижний регистр, подчёркивания):
+b2b_sales, logistics, wholesale_distribution, manufacturing, construction, real_estate, auto_dealers, healthcare, banking_finance, insurance, telecom, retail, ecommerce, oil_gas_energy, energy_utilities, hr_recruiting, legal, consulting, education, government_public_sector, aviation_travel, agriculture, mining_metallurgy, cybersecurity, it_saas, data_centers_infrastructure, media_advertising, pharma.
+
+Если новость про самих вендоров AI (OpenAI, Nvidia, облака, чипы, модели), ставь it_saas или data_centers_infrastructure, а суть AI-направления клади в ai_categories, НЕ в industry_primary. Если отрасль правда не определяется, ставь unknown, но не выдумывай AI-сектор.
+
+Так же строго со справочниками: ai_categories и signal_types бери ТОЛЬКО из списков методички, в нижнем регистре с подчёркиваниями (ai_agents, local_llm, private_ai, rag, voice_ai, document_ai, crm_ai, bi_ai, coding_ai, gpu_infrastructure, data_centers и т.д.). Не изобретай новые названия и не пиши одно и то же по-разному: «generative AI» и «generative_ai» это дубли, всегда пиши generative_ai.
+
+recommended_action тоже строго enum, одно слово: save, watch, report, alert, research, content, offer, sales_outreach, partner_search, product_hypothesis, mvp. Развёрнутую формулировку клади в next_step.
+
+## ЖЁСТКОЕ ПРАВИЛО: суммы и стадия (для графиков рынка)
+
+СУММЫ. Если в новости названы деньги, ОБЯЗАТЕЛЬНО вытащи их. Это главный индикатор направления рынка, важнее любых оценок.
+- budget_amount: число без пробелов и знаков валюты. «$1.65 трлн» = 1650000000000, «500 млн юаней» = 500000000, «AED 40 million» = 40000000
+- budget_currency: код валюты USD, AED, CNY, EUR, RUB, GBP, SAR
+- budget_type строго одно из: government_budget, corporate_capex, funding_round, m_and_a, tender, cloud_gpu_contract, revenue_target, unknown
+- budget_clarity 0-5 как уверенность в сумме
+Если суммы нет, budget_amount оставь пустым, НЕ выдумывай и НЕ округляй «примерно».
+
+СТАДИЯ. adoption_stage строго одно значение из списка, без самодеятельности:
+announcement (заявили, объявили) · pilot (пилот, тест) · implementation (внедряют) · production (работает в проде) · scaling (масштабируют) · procurement (закупка, тендер) · regulation (регулирование) · research (исследование) · unknown
+
+Значения вроде market_observation, signal, reported_event ЗАПРЕЩЕНЫ, из-за них разрез по зрелости рынка бесполезен. Если событие это просто обзор рынка без действия, ставь unknown и снижай score, а не выдумывай стадию.
+
+Так же строго market_stage: early, growing, mainstream, overheated, declining.
