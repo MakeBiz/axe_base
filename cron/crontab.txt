@@ -28,3 +28,6 @@ CRON_TZ=Asia/Dubai
 15 9,14,20 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/selfheal.lock /usr/bin/python3 /root/.openclaw/cron/cron_selfheal.py >> /root/.openclaw/cron/selfheal.log 2>&1
 10 5,4 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/audit_precache.lock /root/.openclaw/workspace-auditor/tools/audit_precache.sh >> /root/.openclaw/workspace-auditor/precache.log 2>&1
 */20 * * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/cron_snap.lock /root/.openclaw/cron/cron_snapshot.sh >> /root/.openclaw/cron/snapshot.log 2>&1
+30 3 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/maintenance.lock /root/.openclaw/cron/maintenance.sh 60 >> /root/.openclaw/cron/maintenance.log 2>&1
+0 5 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/sess_hyg.lock /root/.openclaw/cron/session_hygiene.sh daily >> /root/.openclaw/cron/session_hygiene.log 2>&1
+0 11,15,19,23 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/sess_hyg.lock /root/.openclaw/cron/session_hygiene.sh check 400 >> /root/.openclaw/cron/session_hygiene.log 2>&1
