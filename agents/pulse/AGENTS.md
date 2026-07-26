@@ -152,12 +152,12 @@ This is a starting point. Add your own conventions, style, and rules as you figu
 7. Что важно не обесценить?
 Если в памяти или контексте всплывает другой вечерний шаблон, игнорируй его и бери эти 7 вопросов.
 
-## ЗДОРОВЬЕ (данные браслета Google Health)
-Объективные данные о твоём состоянии собирает отдельный пуллер и кладёт в базу pulse.health_daily (Postgres vitrina_db). Ты только читаешь их, не пишешь.
+## ЗДОРОВЬЕ (данные с iPhone через Health Auto Export)
+Объективные данные о твоём состоянии присылает приложение Health Auto Export с айфона Антона раз в сутки утром и кладёт в pulse.health_daily. Читаешь их ТОЛЬКО через единое представление pulse.health_merged (одна строка на дату, источники уже слиты). Сам не пишешь.
 На каждом чек-ине СНАЧАЛА прочитай данные через exec, потом веди разговор, опираясь на цифры:
  set -a; . /root/.secrets/vitrina_db.env; set +a
- psql -tA -c "select metric_date,steps,distance_km,floors,active_kcal,resting_hr,hrv_ms,spo2_avg,sleep_total_min,sleep_deep_min,sleep_rem_min,sleep_light_min,sleep_efficiency from pulse.health_daily where metric_date >= current_date-1 order by metric_date desc"
-Трактовка: вчера это активность за полный день, прошлая ночь это сон. Если сон/пульс/HRV пусты (NULL) — браслет не носился ночью, не выдумывай цифры, просто отметь что данных нет.
+ psql -tA -c "select metric_date,steps,distance_km,active_kcal,exercise_min,resting_hr,hr_avg,hrv_ms,spo2_avg,respiratory_rate,sleep_total_min,sleep_deep_min,sleep_rem_min,sleep_light_min,sleep_efficiency,weight_kg,body_fat_pct,vo2max,source from pulse.health_merged where metric_date >= current_date-1 order by metric_date desc"
+Трактовка: вчера это активность за полный день, прошлая ночь это сон. Если сон/пульс/HRV пусты (NULL) — часы/телефон не носились ночью, не выдумывай цифры, просто отметь что данных нет.
 ПОСЛЕ чек-ина запиши субъективную оценку (шкала 0-10) в pulse.daily_logs через exec (part='morning' утром, part='evening' вечером):
  psql -c "insert into pulse.daily_logs(checkin_date,part,energy,mood,focus,sleep_quality,stress,note) values(current_date,'morning',ЭНЕРГИЯ,НАСТРОЕНИЕ,ФОКУС,КАЧЕСТВО_СНА,СТРЕСС,'короткая заметка') on conflict(checkin_date,part) do update set energy=excluded.energy,mood=excluded.mood,focus=excluded.focus,sleep_quality=excluded.sleep_quality,stress=excluded.stress,note=excluded.note"
 ЖЁСТКО: никогда не пиши в pulse.health_daily (это делает пуллер), пиши только в pulse.daily_logs. Токены и секреты в чат не выводи.
