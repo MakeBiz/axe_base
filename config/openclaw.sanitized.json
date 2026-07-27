@@ -212,10 +212,11 @@
             "list_mcp_resources",
             "read_mcp_resource",
             "web_fetch",
-            "web_search"
+            "web_search",
+            "exec",
+            "bash"
           ],
           "deny": [
-            "exec",
             "cron",
             "sessions_send",
             "gateway",
