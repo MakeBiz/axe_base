@@ -90,10 +90,10 @@ def parse_client(text):
     d.setdefault('phone', d.get('client_phone',''))
     return d
 
-def build(doc_type, account, ctx, number):
+def build(doc_type, account, ctx, number, doc_date=None):
     tpl = DocxTemplate(os.path.join(TEMPLATES, TEMPLATE_FILE[doc_type]))
     full = dict(EXEC[account]); full.update(ctx)
-    today = datetime.date.today().isoformat()
+    today = doc_date or datetime.date.today().isoformat()
     full.setdefault('contract_number', number); full.setdefault('doc_number', number)
     for k in ('offer_number','invoice_number','spec_number','act_number','nda_number'): full.setdefault(k, number)
     for k in ('doc_date','offer_date','invoice_date','spec_date','act_date','nda_date','contract_date'): full.setdefault(k, today)
@@ -118,6 +118,7 @@ def main():
     ap.add_argument('--card')
     ap.add_argument('--client-json')
     ap.add_argument('--number')
+    ap.add_argument('--date')
     ap.add_argument('--chat')
     ap.add_argument('--send', action='store_true')
     ap.add_argument('--amount')
@@ -146,7 +147,7 @@ def main():
     if a.workdays: ctx['delivery_term_workdays'] = str(a.workdays)
     if a.contract_number: ctx['contract_number'] = a.contract_number
     number = a.number or next_number(a.type)
-    out, title = build(a.type, a.account, ctx, number)
+    out, title = build(a.type, a.account, ctx, number, a.date)
     print('BUILT', out); print('TITLE', title)
     if a.send:
         chat = a.chat or DEFAULT_CHAT
