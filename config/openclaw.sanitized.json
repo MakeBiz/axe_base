@@ -890,6 +890,33 @@
             "video_generate"
           ]
         }
+      },
+      {
+        "id": "finance_ext",
+        "name": "finance_ext",
+        "workspace": "/root/.openclaw/workspace-finance-ext",
+        "agentDir": "/root/.openclaw/agents/finance_ext/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "Финансист"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "bash"
+          ],
+          "deny": [
+            "web_search",
+            "web_fetch",
+            "browser",
+            "image",
+            "image_generate",
+            "video_generate"
+          ]
+        },
+        "contextInjection": "always"
       }
     ]
   },
@@ -1127,11 +1154,13 @@
         "finance": {
           "botToken": "***REDACTED***",
           "allowFrom": [
-            "280369346"
+            "280369346",
+            "196360838"
           ],
           "groupPolicy": "allowlist",
           "groupAllowFrom": [
-            "280369346"
+            "280369346",
+            "196360838"
           ]
         }
       },
@@ -1148,6 +1177,18 @@
     }
   },
   "bindings": [
+    {
+      "type": "route",
+      "agentId": "finance_ext",
+      "match": {
+        "channel": "telegram",
+        "accountId": "finance",
+        "peer": {
+          "kind": "direct",
+          "id": "196360838"
+        }
+      }
+    },
     {
       "type": "route",
       "agentId": "main",
