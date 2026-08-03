@@ -1123,6 +1123,16 @@
             "280369346",
             "815206771"
           ]
+        },
+        "finance": {
+          "botToken": "***REDACTED***",
+          "allowFrom": [
+            "280369346"
+          ],
+          "groupPolicy": "allowlist",
+          "groupAllowFrom": [
+            "280369346"
+          ]
         }
       },
       "streaming": {
@@ -1316,6 +1326,14 @@
           "kind": "direct",
           "id": "815206771"
         }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "finance",
+      "match": {
+        "channel": "telegram",
+        "accountId": "finance"
       }
     }
   ],
