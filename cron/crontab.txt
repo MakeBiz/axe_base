@@ -36,3 +36,4 @@ CRON_TZ=Asia/Dubai
 0 10 * * 2 nice -n 15 ionice -c 2 -n 7 flock -n /tmp/scout_crm.lock /root/market/tools/scout_crm.sh >> /root/market/crm.log 2>&1
 30 6 * * 1,4 nice -n 15 ionice -c 2 -n 7 flock -n /tmp/scout_cn.lock /root/market/tools/scout_competitor_news.sh >> /root/market/comp_news.log 2>&1
 7,22,37,52 * * * * flock -n /tmp/svyaznoy_reconcile.lock /root/.openclaw/workspace/bin/svyaznoy_batch_reconcile.sh >/dev/null 2>&1
+20 * * * * /root/.openclaw/workspace-finance/tools/finance_notify_dmitry.sh >> /root/.openclaw/workspace-finance/data/notify_dmitry.log 2>&1
