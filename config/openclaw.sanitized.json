@@ -1155,12 +1155,14 @@
           "botToken": "***REDACTED***",
           "allowFrom": [
             "280369346",
-            "196360838"
+            "196360838",
+            "1369928585"
           ],
           "groupPolicy": "allowlist",
           "groupAllowFrom": [
             "280369346",
-            "196360838"
+            "196360838",
+            "1369928585"
           ]
         }
       },
@@ -1186,6 +1188,18 @@
         "peer": {
           "kind": "direct",
           "id": "196360838"
+        }
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "finance_ext",
+      "match": {
+        "channel": "telegram",
+        "accountId": "finance",
+        "peer": {
+          "kind": "direct",
+          "id": "1369928585"
         }
       }
     },
