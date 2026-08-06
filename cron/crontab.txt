@@ -18,7 +18,7 @@ CRON_TZ=Asia/Dubai
 13 */3 * * * nice -n 15 ionice -c 2 -n 7 /usr/bin/flock -n /tmp/ops_write.lock /root/ops/ops_write.sh >> /root/ops/ops_write.log 2>&1
 0 18 * * * nice -n 15 ionice -c 2 -n 7 /usr/local/bin/openclaw_backup.sh >> /var/log/openclaw_backup.log 2>&1
 30 6 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/radar_discover.lock /root/.openclaw/workspace-radar/tools/radar_discover.sh >> /root/.openclaw/workspace-radar/discover.log 2>&1
-0 7 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/radar_collect_sources.lock /usr/bin/python3 /root/.openclaw/workspace-radar/tools/radar_collect_sources.py 500 >> /root/.openclaw/workspace-radar/collect_sources.log 2>&1
+0 7 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/radar_collect_sources.lock /usr/bin/python3 /root/.openclaw/workspace-radar/tools/radar_collect_sources.py 250 >> /root/.openclaw/workspace-radar/collect_sources.log 2>&1
 20 7 * * * nice -n 15 ionice -c 2 -n 7 /root/.openclaw/workspace-radar/tools/radar_sources_sync.sh >> /root/.openclaw/workspace-radar/sources_sync.log 2>&1
 40 7 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/radar-cron.lock /root/.openclaw/cron/radar_morning.sh >> /root/.openclaw/cron/radar.log 2>&1
 0 8 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/analyst_daily.lock /root/.openclaw/workspace-analyst/tools/analyst_daily.sh >> /root/.openclaw/workspace-analyst/daily.log 2>&1
@@ -26,7 +26,7 @@ CRON_TZ=Asia/Dubai
 0 9 1 * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/radar_revision.lock /root/.openclaw/workspace-radar/tools/radar_revision.sh >> /root/.openclaw/workspace-radar/revision.log 2>&1
 0 16 * * * nice -n 15 ionice -c 2 -n 7 /root/.openclaw/workspace-svyaznoy/tools/svyaznoy_watchdog.sh >> /root/.openclaw/workspace-svyaznoy/watchdog.log 2>&1
 15 9,14,20 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/selfheal.lock /usr/bin/python3 /root/.openclaw/cron/cron_selfheal.py >> /root/.openclaw/cron/selfheal.log 2>&1
-10 5,4 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/audit_precache.lock /root/.openclaw/workspace-auditor/tools/audit_precache.sh >> /root/.openclaw/workspace-auditor/precache.log 2>&1
+10 5 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/audit_precache.lock /root/.openclaw/workspace-auditor/tools/audit_precache.sh >> /root/.openclaw/workspace-auditor/precache.log 2>&1
 */20 * * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/cron_snap.lock /root/.openclaw/cron/cron_snapshot.sh >> /root/.openclaw/cron/snapshot.log 2>&1
 30 3 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/maintenance.lock /root/.openclaw/cron/maintenance.sh 60 >> /root/.openclaw/cron/maintenance.log 2>&1
 0 5 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/sess_hyg.lock /root/.openclaw/cron/session_hygiene.sh daily >> /root/.openclaw/cron/session_hygiene.log 2>&1
