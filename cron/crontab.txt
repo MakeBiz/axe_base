@@ -40,3 +40,4 @@ CRON_TZ=Asia/Dubai
 0 18 * * * python3 /root/.openclaw/workspace-finance/tools/finance_push.py digest dima >> /root/.openclaw/workspace-finance/data/push.log 2>&1
 20 10-17 * * * python3 /root/.openclaw/workspace-finance/tools/finance_push.py income anton >> /root/.openclaw/workspace-finance/data/push.log 2>&1
 20 10-17 * * * python3 /root/.openclaw/workspace-finance/tools/finance_push.py income dima >> /root/.openclaw/workspace-finance/data/push.log 2>&1
+40 6 * * 0 nice -n 15 ionice -c 2 -n 7 flock -n /tmp/yd_collect.lock /usr/bin/python3 /root/.openclaw/workspace-radar/tools/yandex_direct_collect.py 14 >> /root/.openclaw/workspace-radar/yd_collect.log 2>&1
