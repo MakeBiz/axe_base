@@ -61,7 +61,7 @@
 
 Заполняешь только содержательное, метки бери из этих источников.
 
-Наши реквизиты, метки executor_, берёшь ТОЛЬКО из Google Doc `Реквизиты наших счетов`, Document ID `14SO7YXoDeitIlwrCgXjKw8HcUa7xDOt8oQLrEb3Psgo`, по выбранному счёту, Дима, Антон личный, Антон Битрикс, Мейк биз, Злата:
+Наши реквизиты, метки executor_, берёшь ТОЛЬКО из Google Doc `Реквизиты наших счетов`, Document ID `14SO7YXoDeitIlwrCgXjKw8HcUa7xDOt8oQLrEb3Psgo`, по выбранному счёту (только эти счета, других не использовать): Дима, Мейк биз, Злата личный, Злата Битрикс:
 - executor_company_name, executor_company_full_name, executor_legal_form_full
 - executor_inn, executor_registry_label это ОГРНИП или ОГРН, executor_registry_number
 - executor_bank_name, executor_bik, executor_corr_account, executor_bank_account
