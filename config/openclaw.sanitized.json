@@ -3,12 +3,19 @@
     "mode": "local",
     "port": 18789,
     "bind": "loopback",
+    "http": {
+      "endpoints": {
+        "chatCompletions": {
+          "enabled": true
+        }
+      }
+    },
     "auth": {
       "mode": "password",
       "password": "***REDACTED***"
     },
     "tailscale": {
-      "mode": "funnel",
+      "mode": "off",
       "resetOnExit": false
     },
     "controlUi": {
@@ -561,11 +568,11 @@
           "allow": [
             "exec",
             "bash",
-            "cron"
+            "cron",
+            "web_search",
+            "web_fetch"
           ],
           "deny": [
-            "web_search",
-            "web_fetch",
             "browser",
             "image",
             "image_generate",

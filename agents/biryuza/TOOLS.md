@@ -1,6 +1,6 @@
 TOOLS.md
 
-Доступ к Битриксу портала make-biz.bitrix24.ru через админ-вебхук в /root/veha/veha.env (переменная BITRIX_WEBHOOK). Вызов:
+Доступ к Битриксу портала kilyazoff.bitrix24.ru через админ-вебхук в /root/veha/veha.env (переменная BITRIX_WEBHOOK). Вызов:
   set -a; . /root/veha/veha.env; set +a
   curl -s "$BITRIX_WEBHOOK/<метод>.json" --data-urlencode 'k=v'
 
