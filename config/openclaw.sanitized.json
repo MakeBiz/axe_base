@@ -937,9 +937,9 @@
     }
   },
   "wizard": {
-    "lastRunAt": "2026-07-09T08:48:49.263Z",
+    "lastRunAt": "2026-08-12T17:31:35.798Z",
     "lastRunVersion": "2026.6.11",
-    "lastRunCommand": "doctor",
+    "lastRunCommand": "configure",
     "lastRunMode": "local"
   },
   "tools": {
@@ -1004,7 +1004,7 @@
   },
   "meta": {
     "lastTouchedVersion": "2026.6.11",
-    "lastTouchedAt": "2026-07-24T12:10:24.097Z"
+    "lastTouchedAt": "2026-08-12T17:31:35.982Z"
   },
   "channels": {
     "telegram": {
