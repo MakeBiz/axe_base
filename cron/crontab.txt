@@ -43,3 +43,4 @@ CRON_TZ=Asia/Dubai
 40 6 * * 0 nice -n 15 ionice -c 2 -n 7 flock -n /tmp/yd_collect.lock /usr/bin/python3 /root/.openclaw/workspace-radar/tools/yandex_direct_collect.py 14 >> /root/.openclaw/workspace-radar/yd_collect.log 2>&1
 45 6 * * 0 nice -n 15 ionice -c 2 -n 7 flock -n /tmp/yd_demographics.lock /usr/bin/python3 /root/.openclaw/workspace-radar/tools/yandex_direct_demographics.py 14 >> /root/.openclaw/workspace-radar/yd_demographics.log 2>&1
 0 */2 * * * nice -n 15 ionice -c 2 -n 7 flock -n /tmp/heavy_sess.lock /root/.openclaw/cron/heavy_session_hygiene.sh 120000 >> /root/.openclaw/cron/session_hygiene.log 2>&1
+*/5 * * * * flock -n /tmp/drn.lock python3 /root/veha/dup_review_notifier.py >> /root/veha/drn.log 2>&1
