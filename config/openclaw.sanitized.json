@@ -1038,7 +1038,7 @@
   },
   "meta": {
     "lastTouchedVersion": "2026.6.11",
-    "lastTouchedAt": "2026-08-12T17:31:35.982Z"
+    "lastTouchedAt": "2026-08-28T15:59:59.896Z"
   },
   "channels": {
     "telegram": {
@@ -1123,7 +1123,6 @@
           ]
         }
       },
-      "botToken": "***REDACTED***",
       "accounts": {
         "default": {
           "allowFrom": [
@@ -1140,7 +1139,8 @@
             "1369928585",
             "240987019",
             "815206771"
-          ]
+          ],
+          "botToken": "***REDACTED***"
         },
         "partner": {
           "botToken": "***REDACTED***",
@@ -1205,6 +1205,11 @@
             "196360838",
             "1369928585"
           ]
+        },
+        "zlata": {
+          "name": "Zlata Assist",
+          "enabled": true,
+          "tokenFile": "***REDACTED***"
         }
       },
       "streaming": {
@@ -1430,6 +1435,14 @@
       "match": {
         "channel": "telegram",
         "accountId": "finance"
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "zlata-assist",
+      "match": {
+        "channel": "telegram",
+        "accountId": "zlata"
       }
     }
   ],
