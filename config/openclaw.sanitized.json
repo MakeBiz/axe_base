@@ -1195,7 +1195,12 @@
         "zlata": {
           "name": "Zlata Assist",
           "enabled": true,
-          "tokenFile": "***REDACTED***"
+          "tokenFile": "***REDACTED***",
+          "allowFrom": [
+            "240987019",
+            "280369346",
+            "815206771"
+          ]
         }
       },
       "streaming": {
@@ -1411,7 +1416,8 @@
   "commands": {
     "ownerAllowFrom": [
       "telegram:983564480",
-      "telegram:815206771"
+      "telegram:815206771",
+      "telegram:280369346"
     ]
   },
   "skills": {
