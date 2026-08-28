@@ -1038,7 +1038,7 @@
   },
   "meta": {
     "lastTouchedVersion": "2026.6.11",
-    "lastTouchedAt": "2026-08-28T15:59:59.896Z"
+    "lastTouchedAt": "2026-08-28T16:28:02.356Z"
   },
   "channels": {
     "telegram": {
@@ -1163,20 +1163,6 @@
           "groupPolicy": "allowlist",
           "groupAllowFrom": [
             "280369346",
-            "815206771"
-          ]
-        },
-        "yasna": {
-          "botToken": "***REDACTED***",
-          "allowFrom": [
-            "280369346",
-            "240987019",
-            "815206771"
-          ],
-          "groupPolicy": "allowlist",
-          "groupAllowFrom": [
-            "280369346",
-            "240987019",
             "815206771"
           ]
         },
@@ -1366,42 +1352,6 @@
         "peer": {
           "kind": "group",
           "id": "-1004312442970"
-        }
-      }
-    },
-    {
-      "type": "route",
-      "agentId": "yasna",
-      "match": {
-        "channel": "telegram",
-        "accountId": "yasna",
-        "peer": {
-          "kind": "group",
-          "id": "-1003989514984"
-        }
-      }
-    },
-    {
-      "type": "route",
-      "agentId": "yasna",
-      "match": {
-        "channel": "telegram",
-        "accountId": "yasna",
-        "peer": {
-          "kind": "direct",
-          "id": "280369346"
-        }
-      }
-    },
-    {
-      "type": "route",
-      "agentId": "yasna",
-      "match": {
-        "channel": "telegram",
-        "accountId": "yasna",
-        "peer": {
-          "kind": "direct",
-          "id": "240987019"
         }
       }
     },
