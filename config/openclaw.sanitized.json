@@ -899,6 +899,40 @@
         }
       },
       {
+        "id": "zlata-assist",
+        "name": "zlata-assist",
+        "workspace": "/root/.openclaw/workspace-zlata-assist",
+        "agentDir": "/root/.openclaw/agents/zlata-assist/agent",
+        "model": "openai/gpt-5.5",
+        "identity": {
+          "name": "zlata-assist"
+        },
+        "skills": [],
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "web_search",
+            "web_fetch",
+            "message",
+            "telegram"
+          ],
+          "deny": [
+            "exec",
+            "cron",
+            "sessions_send",
+            "gateway",
+            "agents",
+            "write",
+            "edit",
+            "apply_patch",
+            "browser",
+            "image_generate",
+            "video_generate"
+          ]
+        },
+        "contextInjection": "always"
+      },
+      {
         "id": "finance_ext",
         "name": "finance_ext",
         "workspace": "/root/.openclaw/workspace-finance-ext",
