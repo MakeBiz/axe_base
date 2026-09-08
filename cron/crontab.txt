@@ -46,3 +46,4 @@ CRON_TZ=Asia/Dubai
 */5 * * * * flock -n /tmp/drn.lock python3 /root/veha/dup_review_notifier.py >> /root/veha/drn.log 2>&1
 30 3 * * * /root/.openclaw/cron/partners_cabinet_backup.sh >> /root/.openclaw/cron/partners_cabinet_backup.log 2>&1
 45 3 * * * /root/.openclaw/cron/miniapp_finance_backup.sh >> /root/.openclaw/cron/miniapp_finance_backup.log 2>&1
+0 4 * * 0 /root/veha/clean_codex_logs.sh >/dev/null 2>&1
