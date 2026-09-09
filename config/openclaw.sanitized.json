@@ -62,9 +62,10 @@
         "openai/gpt-5.3-codex-spark": {}
       },
       "model": {
-        "primary": "openai/gpt-5.3-codex-spark",
+        "primary": "openai/gpt-5.5",
         "fallbacks": [
-          "openai/gpt-5.4-mini"
+          "openai/gpt-5.4-mini",
+          "openai/gpt-5.3-codex-spark"
         ]
       },
       "workspace": "/root/.openclaw/workspace",
@@ -88,7 +89,7 @@
         "name": "puls",
         "workspace": "/root/.openclaw/workspace-pulse",
         "agentDir": "/root/.openclaw/agents/puls/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Пульс"
         },
@@ -110,7 +111,7 @@
         "name": "mentor",
         "workspace": "/root/.openclaw/workspace-mentor",
         "agentDir": "/root/.openclaw/agents/mentor/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Ментор"
         },
@@ -139,7 +140,7 @@
         "name": "psychologist",
         "workspace": "/root/.openclaw/workspace-psychologist",
         "agentDir": "/root/.openclaw/agents/psychologist/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Психолог"
         },
@@ -161,7 +162,7 @@
         "name": "teacher",
         "workspace": "/root/.openclaw/workspace-teacher",
         "agentDir": "/root/.openclaw/agents/teacher/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Тичер"
         },
@@ -182,7 +183,7 @@
         "name": "auditor",
         "workspace": "/root/.openclaw/workspace-auditor",
         "agentDir": "/root/.openclaw/agents/auditor/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Аудитор"
         },
@@ -212,7 +213,7 @@
         "name": "advisor",
         "workspace": "/root/.openclaw/workspace-advisor",
         "agentDir": "/root/.openclaw/agents/advisor/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Советник"
         },
@@ -249,7 +250,7 @@
         "name": "dispatcher",
         "workspace": "/root/.openclaw/workspace-dispatcher",
         "agentDir": "/root/.openclaw/agents/dispatcher/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Диспетчер"
         },
@@ -286,7 +287,7 @@
         "name": "lawyer",
         "workspace": "/root/.openclaw/workspace-lawyer",
         "agentDir": "/root/.openclaw/agents/lawyer/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Юрист"
         },
@@ -334,7 +335,7 @@
         "name": "svyaznoy",
         "workspace": "/root/.openclaw/workspace-svyaznoy",
         "agentDir": "/root/.openclaw/agents/svyaznoy/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Связной"
         },
@@ -374,7 +375,7 @@
         "name": "radar",
         "workspace": "/root/.openclaw/workspace-radar",
         "agentDir": "/root/.openclaw/agents/radar/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Радар"
         },
@@ -408,7 +409,7 @@
         "name": "analyst",
         "workspace": "/root/.openclaw/workspace-analyst",
         "agentDir": "/root/.openclaw/agents/analyst/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Аналитик"
         },
@@ -447,7 +448,7 @@
         "name": "finance",
         "workspace": "/root/.openclaw/workspace-finance",
         "agentDir": "/root/.openclaw/agents/finance/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Финансист"
         },
@@ -480,7 +481,7 @@
         "name": "dashboard",
         "workspace": "/root/.openclaw/workspace-dashboard",
         "agentDir": "/root/.openclaw/agents/dashboard/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Дашборд"
         },
@@ -526,7 +527,7 @@
         "name": "controller",
         "workspace": "/root/.openclaw/workspace-controller",
         "agentDir": "/root/.openclaw/agents/controller/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Контролёр"
         },
@@ -563,7 +564,7 @@
         "name": "biryuza",
         "workspace": "/root/.openclaw/workspace-biryuza",
         "agentDir": "/root/.openclaw/agents/biryuza/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Бирюза"
         },
@@ -593,7 +594,7 @@
         "name": "project",
         "workspace": "/root/.openclaw/workspace-project",
         "agentDir": "/root/.openclaw/agents/project/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "contextInjection": "always",
         "skills": [],
         "identity": {
@@ -625,7 +626,7 @@
         "name": "rupor",
         "workspace": "/root/.openclaw/workspace-rupor",
         "agentDir": "/root/.openclaw/agents/rupor/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Рупор"
         },
@@ -655,7 +656,7 @@
         "name": "partner",
         "workspace": "/root/.openclaw/workspace-partner",
         "agentDir": "/root/.openclaw/agents/partner/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "tools": {
           "allow": [
             "exec",
@@ -671,7 +672,7 @@
         "name": "qualifier",
         "workspace": "/root/.openclaw/workspace-qualifier",
         "agentDir": "/root/.openclaw/agents/qualifier/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Квалификатор"
         },
@@ -692,7 +693,7 @@
         "name": "leadgen",
         "workspace": "/root/.openclaw/workspace-leadgen",
         "agentDir": "/root/.openclaw/agents/leadgen/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Лидогенератор"
         },
@@ -713,7 +714,7 @@
         "name": "dossier",
         "workspace": "/root/.openclaw/workspace-dossier",
         "agentDir": "/root/.openclaw/agents/dossier/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Досье"
         },
@@ -735,7 +736,7 @@
         "name": "offer",
         "workspace": "/root/.openclaw/workspace-offer",
         "agentDir": "/root/.openclaw/agents/offer/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "КП-агент"
         },
@@ -756,7 +757,7 @@
         "name": "closer",
         "workspace": "/root/.openclaw/workspace-closer",
         "agentDir": "/root/.openclaw/agents/closer/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Продажник"
         },
@@ -777,7 +778,7 @@
         "name": "pinger",
         "workspace": "/root/.openclaw/workspace-pinger",
         "agentDir": "/root/.openclaw/agents/pinger/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Пингер"
         },
@@ -798,7 +799,7 @@
         "name": "account",
         "workspace": "/root/.openclaw/workspace-account",
         "agentDir": "/root/.openclaw/agents/account/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Аккаунт-менеджер"
         },
@@ -819,7 +820,7 @@
         "name": "pipeline",
         "workspace": "/root/.openclaw/workspace-pipeline",
         "agentDir": "/root/.openclaw/agents/pipeline/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Сторож пайплайна"
         },
@@ -840,7 +841,7 @@
         "name": "qualifier_web",
         "workspace": "/root/.openclaw/workspace-qualifier-web",
         "agentDir": "/root/.openclaw/agents/qualifier_web/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Ассистент MakeBiz"
         },
@@ -856,7 +857,7 @@
         "name": "yasna",
         "workspace": "/root/.openclaw/workspace-yasna",
         "agentDir": "/root/.openclaw/agents/yasna/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Ясна"
         },
@@ -908,7 +909,7 @@
         "name": "zlata-assist",
         "workspace": "/root/.openclaw/workspace-zlata-assist",
         "agentDir": "/root/.openclaw/agents/zlata-assist/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "zlata-assist"
         },
@@ -942,7 +943,7 @@
         "name": "finance_ext",
         "workspace": "/root/.openclaw/workspace-finance-ext",
         "agentDir": "/root/.openclaw/agents/finance_ext/agent",
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.5",
         "identity": {
           "name": "Финансист"
         },
@@ -1043,7 +1044,7 @@
   },
   "meta": {
     "lastTouchedVersion": "2026.6.11",
-    "lastTouchedAt": "2026-09-08T12:20:09.094Z"
+    "lastTouchedAt": "2026-09-09T10:08:30.887Z"
   },
   "channels": {
     "telegram": {
