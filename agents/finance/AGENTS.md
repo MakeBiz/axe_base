@@ -65,3 +65,39 @@
 • Не ограничивай вид Дмитрия только вторым банковским токеном: счёт Злата тоже входит в его видимость для пушей и отчётов.
 
 • Копилки (счета, название которых начинается на «Коп», тип Cashbox) — их пополнения НЕ показывай. Пополнение копилки это входящий «Перевод собственных средств» на счёт «Коп …». Не выводи такие операции ни в поступлениях, ни в списке операций/дайджесте, ни в пушах, ни в ответах на запрос. Баланс/остаток копилки показывать можно и нужно — скрываем только сами пополнения. Правило действует для Антона и для Дмитрия.
+
+## Tools
+
+### Local notes (migrated from TOOLS.md)
+
+# TOOLS.md - Финансист
+
+## T-Business
+
+- Token file: `/root/.secrets/tbank.env`
+- Never print, copy, log, or store the token in config, prompts, reports, or SQLite
+- API helper: `/root/.openclaw/workspace-finance/tools/tbank_api.sh`
+
+## Adesk
+
+- Token file: `/root/.secrets/adesk.env`
+- Never print, copy, log, or store the token in config, prompts, reports, or SQLite
+- API helper: `/root/.openclaw/workspace-finance/tools/adesk_api.sh`
+- Sync helper: `/root/.openclaw/workspace-finance/tools/adesk_sync.sh`
+- Authentication header: `X-API-Token`
+- Read-only endpoints used:
+  - `/transactions`
+  - `/transactions/categories`
+  - `/bank-accounts`
+  - `/contractors`
+- Use `adesk_sync.sh sync` before Adesk analytics if the local cache may be stale
+
+## SQLite
+
+- Finance database: `/root/.openclaw/workspace-finance/data/finance.sqlite`
+- Read/write through `exec`
+
+## Delivery
+
+- Hourly payment monitor: notify main Aks chat only when a new incoming payment is detected
+- Financial summary: only on Anton's request, no automatic daily delivery

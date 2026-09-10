@@ -78,3 +78,25 @@ python3 /root/.openclaw/workspace-radar/tools/radar_add_source.py "Назван�
 
 ### Статусы и решения
 candidate — новый на проверке. active — подтверждён Антоном. blocked и archived — не мониторим. Радар сам НЕ блокирует и НЕ повышает статус, только копит статистику. Перевод статусов — ежемесячная ревизия, решение за Антоном (полуручной режим).
+
+## Tools
+
+### Local notes (migrated from TOOLS.md)
+
+# TOOLS.md - Радар
+
+## Postgres
+
+- Database: `vitrina_db`
+- Connection env: `/root/.secrets/vitrina_db.env`
+- Table: `radar.raw_news`
+- Read/write through `exec`
+
+## Google Drive
+
+- Reference document fileId: `1SQGe4AXnijif1pFcRpVPnhxtWT_6TZH7`
+
+## Delivery
+
+- No Telegram delivery
+- Cron-only background collection

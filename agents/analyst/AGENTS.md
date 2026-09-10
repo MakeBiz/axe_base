@@ -96,3 +96,28 @@ announcement (заявили, объявили) · pilot (пилот, тест) 
 Значения вроде market_observation, signal, reported_event ЗАПРЕЩЕНЫ, из-за них разрез по зрелости рынка бесполезен. Если событие это просто обзор рынка без действия, ставь unknown и снижай score, а не выдумывай стадию.
 
 Так же строго market_stage: early, growing, mainstream, overheated, declining.
+
+## Tools
+
+### Local notes (migrated from TOOLS.md)
+
+# TOOLS.md - Аналитик
+
+## Postgres
+
+- Database: `vitrina_db`
+- Connection env: `/root/.secrets/vitrina_db.env`
+- Read raw news from `radar.raw_news`
+- Write signals to `analyst.signals`
+- Write report to `analyst.daily_report`
+- Read finance context from schema `finance`
+- Read/write through `exec`
+
+## Google Drive
+
+- Reference document fileId: `11amqqAl_hksy0BxVm-IsUuXlzFihLkF-`
+
+## Delivery
+
+- No chat binding
+- Daily report delivery is handled by cron delivery to Telegram group `-1003097588708`
