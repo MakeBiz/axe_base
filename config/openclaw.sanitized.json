@@ -62,7 +62,7 @@
         "openai/gpt-5.3-codex-spark": {}
       },
       "model": {
-        "primary": "openai/gpt-5.5",
+        "primary": "openai/gpt-5.6-luna",
         "fallbacks": [
           "openai/gpt-5.3-codex-spark"
         ]
