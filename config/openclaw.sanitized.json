@@ -222,7 +222,7 @@
         },
         "skills": [],
         "tools": {
-          "profile": "minimal",
+          "profile": "coding",
           "allow": [
             "read",
             "list_mcp_resources",
@@ -258,7 +258,7 @@
         },
         "skills": [],
         "tools": {
-          "profile": "minimal",
+          "profile": "coding",
           "allow": [
             "exec",
             "bash",
@@ -296,7 +296,7 @@
           "tg-dialogues"
         ],
         "tools": {
-          "profile": "minimal",
+          "profile": "coding",
           "allow": [
             "exec",
             "mcp__codex_apps__google_drive_get_file_metadata",
@@ -451,7 +451,7 @@
         },
         "skills": [],
         "tools": {
-          "profile": "minimal",
+          "profile": "coding",
           "allow": [
             "exec",
             "bash"
@@ -594,7 +594,7 @@
           "name": "Проджект"
         },
         "tools": {
-          "profile": "minimal",
+          "profile": "coding",
           "allow": [
             "message",
             "sessions_send",
@@ -927,7 +927,7 @@
         },
         "skills": [],
         "tools": {
-          "profile": "minimal",
+          "profile": "coding",
           "allow": [
             "exec",
             "bash"
