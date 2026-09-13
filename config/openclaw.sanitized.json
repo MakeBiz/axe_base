@@ -183,35 +183,6 @@
         },
         "contextInjection": "always"
       },
-      "auditor": {
-        "name": "auditor",
-        "workspace": "/root/.openclaw/workspace-auditor",
-        "agentDir": "/root/.openclaw/agents/auditor/agent",
-        "model": "openai/gpt-5.5",
-        "identity": {
-          "name": "Аудитор"
-        },
-        "skills": [],
-        "tools": {
-          "profile": "minimal",
-          "allow": [
-            "sessions_list",
-            "sessions_history",
-            "sessions_send",
-            "cron",
-            "exec"
-          ],
-          "deny": [
-            "web_search",
-            "web_fetch",
-            "browser",
-            "view_image",
-            "image_generate",
-            "video_generate"
-          ]
-        },
-        "contextInjection": "always"
-      },
       "advisor": {
         "name": "advisor",
         "workspace": "/root/.openclaw/workspace-advisor",
@@ -987,7 +958,6 @@
         "puls",
         "psychologist",
         "teacher",
-        "auditor",
         "advisor",
         "lawyer",
         "svyaznoy",
