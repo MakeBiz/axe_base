@@ -453,7 +453,7 @@
         },
         "skills": [],
         "tools": {
-          "profile": "minimal",
+          "profile": "coding",
           "allow": [
             "exec",
             "bash",
